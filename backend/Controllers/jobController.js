@@ -53,14 +53,9 @@ const getJobs = async(req,res,next)=>{
     const getAll = await Job.find(filter).populate("recruiter","name email role")
     .skip(skip).limit(limit); // Give only name email role
 
-
+    //List down the pages 
     const totalJobs = await Job.countDocuments(filter); //It counts how many job documents match your existing filter.
     const totalPages = Math.ceil(totalJobs/limit)
-//     Suppose there are 23 jobs and your limit is 10:
-// - Page 1: 10 jobs
-// - Page 2: 10 jobs
-// - Page 3: 3 jobs
-// \(23 \div 10 = 2.3\), and Math.ceil(2.3) returns 3.
 
  res.status(200).json({
         message:"All Jobs",
@@ -74,6 +69,15 @@ const getJobs = async(req,res,next)=>{
         next(err)
     }
 }
+//     Suppose there are 23 jobs and your limit is 10:
+// - Page 1: 10 jobs
+// - Page 2: 10 jobs
+// - Page 3: 3 jobs
+// \(23 \div 10 = 2.3\), and Math.ceil(2.3) returns 3.
+
+// limit = how many jobs per page.
+// skip = how many jobs to skip before returning results.
+// totalPages = how many pages are available in total.
 
 //Update Job - Specfic Job can be deleted by that specific person only
 const updateJob = async(req,res,next)=>{

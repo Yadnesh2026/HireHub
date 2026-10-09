@@ -16,7 +16,7 @@ router.get("/user/:id",getUser)
 router.post("/user",validateMiddleware, createUser)
 
 //update User
-router.put("/user/:id",updateUser)
+router.put("/user/:id",authMiddleware,updateUser)
 
 //Delete User
 router.delete("/user/:id",userDelete)
