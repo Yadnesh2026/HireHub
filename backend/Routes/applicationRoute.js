@@ -15,6 +15,6 @@ router.get("/application",authMiddleware,getMyApplications)
 router.post("/applicants",authMiddleware,roleMiddleware,getApplicants)
 
 //Update Applicaiton from recuirter
-router.put("/application/:id/status",authMiddleware,roleMiddleware,updateApplicationStatus)
+router.patch("/application/:id/status",authMiddleware,roleMiddleware,updateApplicationStatus)
 
 module.exports = router
