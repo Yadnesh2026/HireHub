@@ -19,3 +19,11 @@ router.delete("/job/:id",authMiddleware,roleMiddleware,deleteJob)
 
 
 module.exports = router
+
+// Test A — All jobs
+// GET http://localhost:1000/api/jobs
+// Returns all jobs.
+
+// Test B — Filter by location
+// GET http://localhost:1000/api/jobs?location=Pune
+// Returns jobs whose location is exactly Pune.

@@ -2,7 +2,8 @@ const Job = require("../models/jobSchema")
 
 //Create Job
 const createJob = async(req,res,next)=>{
-        console.log("CREATE JOB CONTROLLER REACHED");
+    try{
+    console.log("CREATE JOB CONTROLLER REACHED");
     const{title, description, company, location, salary, skills}= req.body
     const recruiter = req.user.userId
 
@@ -18,21 +19,66 @@ const createJob = async(req,res,next)=>{
             company:newJob.company
         }
     })
+
+    }catch(err){
+        next(err)
+    }
+      
 }
 
 //Get Jobs
 const getJobs = async(req,res,next)=>{
-    const getAll = await Job.find().populate("recruiter","name email role") // Give only name email role
+    try{
+    //Pagination
+    const page = Number(req.query.page) || 1;
+    const limit = Number(req.query.limit) || 10;
+    const skip = (page - 1 ) * limit
 
-    res.status(200).json({
+    //Filtering by location and title
+    const skill = req.query.skill
+    const location = req.query.location;
+    const title = req.query.title
+    const filter ={}
+    if(location){
+        filter.location = location
+    }
+    if(title){
+        filter.title={ $regex:title, $options:"i"}
+    }
+    if(skill){
+
+        filter.skills = {$regex:skill, $options:"i"}
+    }
+
+    const getAll = await Job.find(filter).populate("recruiter","name email role")
+    .skip(skip).limit(limit); // Give only name email role
+
+
+    const totalJobs = await Job.countDocuments(filter); //It counts how many job documents match your existing filter.
+    const totalPages = Math.ceil(totalJobs/limit)
+//     Suppose there are 23 jobs and your limit is 10:
+// - Page 1: 10 jobs
+// - Page 2: 10 jobs
+// - Page 3: 3 jobs
+// \(23 \div 10 = 2.3\), and Math.ceil(2.3) returns 3.
+
+ res.status(200).json({
         message:"All Jobs",
+        currentPage:page,
+        totalJobs,
+        totalPages,
         jobs:getAll
     })
+
+    }catch(err){
+        next(err)
+    }
 }
 
 //Update Job - Specfic Job can be deleted by that specific person only
 const updateJob = async(req,res,next)=>{
-    const id = req.params.id
+    try{
+        const id = req.params.id
     const job = await Job.findById(id)
     const {title,description,company, location,salary,skills} = req.body
 
@@ -60,10 +106,16 @@ const updateJob = async(req,res,next)=>{
             title:updateJob.title
         }
     })
+
+    }catch(err){
+        next(err)
+    }
+    
 }
 
 //Delete Route
 const deleteJob = async(req,res,next)=>{
+   try{
     const id =req.params.id
     const job = await Job.findById(id)
 
@@ -84,6 +136,10 @@ const deleteJob = async(req,res,next)=>{
     res.status(200).json({
         message:"Job Deleted"
     })
+
+   }catch(err){
+    next(err)
+   }
 }
 
 // Find resource

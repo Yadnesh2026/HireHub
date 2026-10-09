@@ -113,8 +113,9 @@ const userDelete = async (req, res, next) => {
 };
 
 //Login Route
-const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+const loginUser = async (req, res, next) => {
+  try{
+     const { email, password } = req.body;
   const user = await User.findOne({ email });
 
   if (!user) {
@@ -139,6 +140,11 @@ const loginUser = async (req, res) => {
       message: "User does not exist",
     });
   }
+
+  }catch(err){
+    next(err)
+  }
+ 
 };
 
 module.exports = {
