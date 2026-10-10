@@ -146,10 +146,46 @@ const updateApplicationStatus = async(req,res,next)=>{
    
 }
 
+//Resume Upload 
+const uploadResume =async(req,res,next)=>{
+    try{
+        const resume = req.file
+        const applicationId = req.params.applicationId
+        if(!resume){
+            return res.status(400).json({
+                message:"Please Upload Resume"
+            })
+        }
+
+        const application = await Application.findById(applicationId)
+        if(!application){
+            return res.status(400).json({
+                message:"It is not Found"
+            })
+        }
+        const candidateId = req.user.userId
+        if(candidateId !== application.candidate.toString()){
+            return res.status(402).json({
+                message:"You are not the application candidate"
+            })
+        }
+        application.resume = resume.path() //stores the uploaded file's path in the application document.
+        await application.save()
+
+        return res.status(200).json({
+            message:"Resume Uploaded Successfully",
+            resume:application.resume
+        })
+    }catch(err){
+        next(err)
+    }
+
+}
 
 
 
 
 
 
-module.exports = {applyJob, getMyApplications, getApplicants,updateApplicationStatus}
+
+module.exports = {applyJob, getMyApplications, getApplicants,updateApplicationStatus,uploadResume}

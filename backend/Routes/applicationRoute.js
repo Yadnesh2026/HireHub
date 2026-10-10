@@ -1,8 +1,9 @@
 const express = require("express")
-const {applyJob,getMyApplications, getApplicants,updateApplicationStatus} = require("../Controllers/applicationController")
+const {applyJob,getMyApplications, getApplicants,updateApplicationStatus,uploadResume} = require("../Controllers/applicationController")
 const authMiddleware = require("../Middleware/authMiddleware")
 const roleMiddleware = require("../Middleware/roleMiddleware")
 const candidateMiddlware = require("../Middleware/candidateMiddleware.js")
+const upload = require("../Middleware/uploadMiddleware")
 const router = express.Router()
 
 
@@ -17,5 +18,8 @@ router.get("/applicants",authMiddleware,roleMiddleware,getApplicants)
 
 //Update Applicaiton from recuirter
 router.patch("/application/:id/status",authMiddleware,roleMiddleware,updateApplicationStatus)
+
+//Resume Route
+router.post("/application/:applicationId/resume",authMiddleware,candidateMiddlware,upload.single("resume"),uploadResume)
 
 module.exports = router
