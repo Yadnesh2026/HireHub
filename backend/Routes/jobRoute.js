@@ -1,7 +1,7 @@
 const express = require("express")
 const authMiddleware = require("../Middleware/authMiddleware")
 const roleMiddleware = require("../Middleware/roleMiddleware")
-const {createJob,getJobs, updateJob, deleteJob} = require("../Controllers/jobController")
+const {createJob,getJobs, updateJob, deleteJob, getMyJobs} = require("../Controllers/jobController")
 const router = express.Router()
 
 
@@ -16,6 +16,9 @@ router.put("/job/:id",authMiddleware,roleMiddleware,updateJob)
 
 //Delete Jobs
 router.delete("/job/:id",authMiddleware,roleMiddleware,deleteJob)
+
+// Recruiter dashboard — view their own jobs
+router.get("/myjobs",authMiddleware,roleMiddleware,getMyJobs)
 
 
 module.exports = router

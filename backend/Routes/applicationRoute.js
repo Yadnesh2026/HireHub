@@ -1,5 +1,5 @@
 const express = require("express")
-const {applyJob,getMyApplications, getApplicants,updateApplicationStatus,uploadResume} = require("../Controllers/applicationController")
+const {applyJob,getMyApplications, getApplicants,updateApplicationStatus,uploadResume, deleteApplication,} = require("../Controllers/applicationController")
 const authMiddleware = require("../Middleware/authMiddleware")
 const roleMiddleware = require("../Middleware/roleMiddleware")
 const candidateMiddlware = require("../Middleware/candidateMiddleware.js")
@@ -21,5 +21,11 @@ router.patch("/application/:id/status",authMiddleware,roleMiddleware,updateAppli
 
 //Resume Route
 router.post("/application/:applicationId/resume",authMiddleware,candidateMiddlware,upload.single("resume"),uploadResume)
+
+//Delete Route
+router.delete("/application/:applicationId",authMiddleware,deleteApplication)
+
+
+
 
 module.exports = router

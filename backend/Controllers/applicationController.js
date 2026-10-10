@@ -2,41 +2,43 @@ const Application = require("../models/applicationSchema.js");
 const Job = require("../models/jobSchema");
 const mongoose = require("mongoose")
 
+
+
 const applyJob = async (req, res, next) => {
-    try{
-         const jobId = req.params.jobId;
-  const candidateId = req.user.userId;
+try{
+const jobId = req.params.jobId;
+const candidateId = req.user.userId;
 
-  const job = await Job.findById(jobId);
+const job = await Job.findById(jobId);
 
-  if (!job) {
+if (!job) {
     return res.status(404).json({
       message: "Job not exist",
     });
-  }
+}
 
-  //If the same candidate has apply for the Job or not
-  const exisitingApplication = await Application.findOne({
+//If the same candidate has apply for the Job or not
+const exisitingApplication = await Application.findOne({
     candidate: candidateId,
     job: jobId,
-  });
+});
 
-  if (exisitingApplication) {
+if (exisitingApplication) {
     return res.status(409).json({
       message: "You have already applied for this Job",
     });
-  }
+}
 
-  //if not exist create new Application
-  const newApplication = new Application({
+//if not exist create new Application
+const newApplication = new Application({
     candidate: candidateId,
     job: jobId,
-  });
-  await newApplication.save();
+});
+await newApplication.save();
 
-  res.status(200).json({
+res.status(200).json({
     message: "Applied Successfully",
-  });
+});
     }catch(err){
         next(err)
     }
@@ -143,8 +145,8 @@ const updateApplicationStatus = async(req,res,next)=>{
     }catch(err){
         next(err)
     }
-   
 }
+
 
 //Resume Upload 
 const uploadResume =async(req,res,next)=>{
@@ -169,7 +171,7 @@ const uploadResume =async(req,res,next)=>{
                 message:"You are not the application candidate"
             })
         }
-        application.resume = resume.path() //stores the uploaded file's path in the application document.
+        application.resume = resume.path //stores the uploaded file's path in the application document.
         await application.save()
 
         return res.status(200).json({
@@ -179,7 +181,38 @@ const uploadResume =async(req,res,next)=>{
     }catch(err){
         next(err)
     }
+}
 
+//Delete Application - Withdraw the application
+const deleteApplication = async(req,res,next)=>{
+    try{
+    const applicationId = req.params.applicationId
+    const candidate = req.user.userId
+
+    const application = await Application.findById(applicationId)
+
+    if(!application){
+        return res.status(404).json({
+            message:"Application does not exist"
+        })
+    }
+
+    if(candidate != application.candidate.toString() ){
+        return res.status(403).json({
+            message:"You are not owner of this application"
+        })
+    }
+
+    const deleteApplication = await Application.findByIdAndDelete(applicationId)
+
+    res.status(200).json({
+        message:"Application Deleted",
+        deleteApplication
+    })
+
+    }catch(err){
+        next(err)
+    }
 }
 
 
@@ -188,4 +221,5 @@ const uploadResume =async(req,res,next)=>{
 
 
 
-module.exports = {applyJob, getMyApplications, getApplicants,updateApplicationStatus,uploadResume}
+
+module.exports = {applyJob, getMyApplications, getApplicants,updateApplicationStatus,uploadResume,deleteApplication}

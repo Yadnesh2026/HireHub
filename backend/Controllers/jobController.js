@@ -79,6 +79,10 @@ const getJobs = async(req,res,next)=>{
 // skip = how many jobs to skip before returning results.
 // totalPages = how many pages are available in total.
 
+
+
+
+
 //Update Job - Specfic Job can be deleted by that specific person only
 const updateJob = async(req,res,next)=>{
     try{
@@ -158,4 +162,21 @@ const deleteJob = async(req,res,next)=>{
 // NO  → 403
 
 
-module.exports = {createJob, getJobs, updateJob,deleteJob}
+
+// Recruiter dashboard — view their own jobs
+const getMyJobs = async(req,res,next)=>{
+    try{
+    const loggedIn = req.user.userId
+    const job = await Job.find({recruiter:loggedIn})
+
+    res.status(200).json({
+        message:"All Your Jobs",
+        job:job
+    })
+
+    }catch(err){
+        next(err)
+    }
+}
+
+module.exports = {createJob, getJobs, updateJob,deleteJob,getMyJobs}
