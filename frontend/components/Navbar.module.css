@@ -1,0 +1,104 @@
+
+/* Navbar */
+.Navbar{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 5%;
+    background-color: #090d1c;
+    border-bottom: 1px solid #252d46;
+    position: relative;
+    z-index: 10;
+}
+.leftSide{
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+.leftSide img{
+    display: block;
+    width: 160px;
+    height: auto;
+}
+.rightSide{
+    display:flex ;
+    align-items: center;
+    gap: 28px;
+}
+.rightSide > a{
+    color: #dce2f5;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+.rightSide >a:hover{
+    color: #a78bfa;
+}
+.authBtns{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.authBtns button:first-child{
+    color: #dce2f5;
+    background: transparent;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 16px;
+    transition: background 0.2s ease,color 0.2s ease;
+    cursor: pointer;
+}
+
+.authBtns button:first-child:hover {
+  color: #ffffff;
+  background-color: #1b2340;
+}
+
+/* Sign Up button */
+.authBtns button:last-child {
+  color: #ffffff;
+  background: #8b7cff;
+  border: 1px solid #8b7cff;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.2s ease;
+  cursor: pointer;
+}
+
+.authBtns button:last-child:hover {
+  background: #7665f5;
+  border-color: #7665f5;
+  transform: translateY(-1px);
+}
+
+/* Tablet and mobile */
+@media (max-width: 640px) {
+  .Navbar {
+    padding: 12px 4%;
+  }
+
+  .leftSide img {
+    width: 125px;
+  }
+
+  .rightSide {
+    gap: 8px;
+  }
+
+  .rightSide > a {
+    font-size: 13px;
+  }
+
+  .authBtns {
+    gap: 4px;
+  }
+
+  .authBtns button:first-child,
+  .authBtns button:last-child {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+}
