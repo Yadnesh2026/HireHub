@@ -1,4 +1,5 @@
 const Application = require("../models/applicationSchema.js");
+const Application = require("../models/applicationSchema.js");
 const Job = require("../models/jobSchema");
 const mongoose = require("mongoose")
 
@@ -215,6 +216,49 @@ const deleteApplication = async(req,res,next)=>{
     }
 }
 
+//Job application statistics for recuriter
+const getApplications =  async(req,res)=>{
+    try{
+         const recruiter = req.user.userId
+    const jobs = await Job.find({recruiter:recruiter}) //Find that recruiter's jobs
+    const jobId = jobs.map((job)=> job._id); //Collect the job IDs ex:[j1, j2]
+
+    //Find applications for those jobs
+    const application = await Application.find({
+        job:{$in: jobId} //Find applications where the job field matches any ID inside the jobIds array.
+    })
+
+    //Count pending applications
+    const pendingApplication = application.filter(
+        (application)=> application.status === "pending"
+    ).length
+
+    //count shortlisted applications
+    const shortlistedApplication = application.filter(
+        (application)=> application.status === "shortlisted"
+    ).length
+
+    //count rejected applications
+    const rejectedApplication = application.filter(
+        (application)=> application.status === "rejected"
+    ).length
+
+    const totalApplications = application.length;
+
+    res.status(200).json({
+        message:"All filter Applicatios",
+        totalApplications: totalApplications,
+        status:{
+            pending: pendingApplication,
+            shortlisted: shortlistedApplication,
+            rejected: rejectedApplication
+        }
+    })
+
+    }catch(err){
+        next(err)
+    }
+}
 
 
 
@@ -222,4 +266,9 @@ const deleteApplication = async(req,res,next)=>{
 
 
 
-module.exports = {applyJob, getMyApplications, getApplicants,updateApplicationStatus,uploadResume,deleteApplication}
+module.exports = {applyJob,
+    getMyApplications,
+    getApplicants,updateApplicationStatus,
+    uploadResume,
+    deleteApplication,
+    getApplications}
