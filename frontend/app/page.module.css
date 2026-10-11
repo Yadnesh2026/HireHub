@@ -86,6 +86,54 @@
     background-color: #7665f5;
 }
 
+
+/* 2nd Section */
+.MainColms{
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 0 80px;
+    text-align: center;
+    
+     background: linear-gradient(
+    180deg,
+    #111831 0%,
+    #17152f 100%
+  );
+}
+.MainHead{
+    margin-bottom: 40px;
+}
+.MainHead h2{
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+.MainHead p{
+    margin: 0;
+    color: #b8c1d9;
+}
+
+.colms{
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.col1,
+.col2,
+.col3{
+    flex: 1;
+}
+
+
+
+
+
+
+
+
+
+
 @media(max-width:650px){
     .searchForm{
         flex-direction: column;;
