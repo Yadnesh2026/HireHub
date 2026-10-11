@@ -17,8 +17,9 @@
 }
 .leftSide img{
     display: block;
-    width: 160px;
+    width: 200px;
     height: auto;
+    object-fit: contain;
 }
 .rightSide{
     display:flex ;

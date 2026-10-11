@@ -15,10 +15,10 @@ function Navbar() {
       <div className={styles.leftSide}>
         <Link href="/">
           <Image
-            src="/HireHub_logo.png"
-            alt="HireHub Logo"
-            width={160}
-            height={60}
+            src="/HireNova_logo.png"
+            alt="HireNova Logo"
+            width={200}
+            height={80}
             priority
           />
         </Link>
