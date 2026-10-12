@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 import { Search, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type Job ={
   _id:string,
@@ -12,14 +13,48 @@ type Job ={
   company:string,
   location:string,
   salary:number,
-  skills:string[];
+  skills:string[],
+  jobType:string
 }
 
 function JobsPage() {
-  const [job, setJob] = useState<Job[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const router = useRouter()
+  //2.
+  const searchParams = useSearchParams() //reads the search value from the URL.
 
+  //Job Search and error, loading
+  const [job, setJob] = useState<Job[]>([]);  //For fetching the Jobs
+  const [isLoading, setIsLoading] = useState(true); //For loading Skeleton
+  const [error, setError] = useState<string | null>(null); //For showing error
+  const [search, setSearch] = useState("") //Search from Jobs page search Bar
+  const [locationSearch, setLocationSearch] = useState("") //Search for location
+
+  //Filter Section Funcational
+  const[selectCompany, setSelectCompany] = useState("");
+  const [salary, setSalary] = useState(15);                                                                                       
+  const [selectJob, setSelectJob] = useState<string[]>([])
+
+
+
+  //1. Search bar
+  const handleSubmit =(e:React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault()
+
+    const params = new URLSearchParams() //use to create URL from Search components
+
+    if(search.trim()){
+      params.set("search",search.trim())
+    };
+    if(locationSearch.trim()){
+      params.set("location",locationSearch.trim())
+    }
+    if(selectCompany){ //for filter DropDown
+      params.set("company",selectCompany)
+    }
+
+    const queryString = params.toString() //params.toString() converts your URL parameters into a string.
+    router.push(`/jobs?${queryString}`)
+  }
 
 
   //Consist of all Jobs from backend 
@@ -39,8 +74,10 @@ function JobsPage() {
       setJob(data.jobs);
 
     } catch (error) {
+
       console.error("Error fetching jobs:", error);
       setError("Unable to load jobs. Please try again.");
+
     } finally {
       setIsLoading(false);
     }
@@ -48,7 +85,48 @@ function JobsPage() {
 
   allJobs();
 }, []);
+
+
+
+//3. Filter the Job
+
+  //To read the things from URL
+  const searchQuery = searchParams.get("search") || ""
+  const locationQuery = searchParams.get("location") || ""
   
+
+  //DB Jobs should match the Search Input Title
+  const filterJob = job.filter((j)=>{
+    const matchTitle = j.title.toLowerCase().includes(searchQuery.toLowerCase())
+    const locationMatch = j.location.toLowerCase().includes(locationQuery.toLowerCase())
+
+    //Filter the DropDown - Company
+    const companyDropDown = j.company.toLowerCase().includes(selectCompany.toLowerCase())
+
+    //Salary Match
+    const salaryMatch = j.salary <= salary *100000  //This converts the slider value from lakhs into rupees.
+
+    //Job Type
+    const jobTypeMatch = selectJob.length == 0 || selectJob.includes(j.jobType)
+
+  
+
+    return matchTitle && locationMatch && companyDropDown && salaryMatch && jobTypeMatch
+  })
+
+  //Handle JobTypes Filter
+      const handleJobType = (type: string) => {
+      setSelectJob((prev) =>
+        prev.includes(type)
+          ? prev.filter((item) => item !== type)
+          : [...prev, type]
+      );
+    };
+  
+
+
+
+
   return (
     <main className={styles.page}>
       <section>
@@ -59,19 +137,25 @@ function JobsPage() {
 
 
         <div className={styles.searchbar}>
-          <form className={styles.searchForm}>
+
+          <form className={styles.searchForm} onSubmit={handleSubmit}>
             <Search className={styles.featureIcon} />
-            <Input type="text"  placeholder="Job title or Keyword" className={styles.searchInput} />
+            <Input type="text" value={search} onChange={(e)=>setSearch(e.target.value)}  placeholder="Job title or Keyword" className={styles.searchInput} />
+
             <MapPin className={styles.featureIcon}/>
-            <Input type="text" placeholder="location" className={styles.searchInput}/>
+            <Input type="text" value={locationSearch} onChange={(e)=>setLocationSearch(e.target.value)} placeholder="location" className={styles.searchInput}/>
+
             <Button type="submit" className={styles.searchBtn}>Search Jobs  </Button>
+
           </form>
+
         </div>
 
 
 
       <div className={styles.mainContent}>
 
+        {/* FilterSide */}
         <div className={styles.filterSide}>
 
           <div className={styles.filterHead}>
@@ -85,11 +169,14 @@ function JobsPage() {
 
             <div className={styles.selectAll}>
 
-              <select className={styles.filterSelect}>
+              <select className={styles.filterSelect} 
+              value={selectCompany}onChange={(e)=>setSelectCompany(e.target.value)}>
+
                 <option value="" disabled>Select Industry</option>
                 <option>Information technology</option>
                 <option>Finance</option>
                 <option>Healthcare</option>
+
               </select>
 
             </div>
@@ -99,7 +186,8 @@ function JobsPage() {
           <div className={styles.filterSalary}>
 
             <h4>Salary Range</h4>
-            <input type="range" className={styles.salarySlider} min="0" max="100" defaultValue="20"/>
+            <input type="range" value={salary} onChange={(e)=>setSalary(Number(e.target.value))} 
+            className={styles.salarySlider} min="0" max="15" />
               <div className={styles.salarySlab}>
                 <span>₹1L</span>
                 <span>₹3L</span>
@@ -109,27 +197,36 @@ function JobsPage() {
           </div>
 
           
+
+
             <div className={styles.filterJobType}>
               <h4>Job Type</h4>
 
               <div className={styles.checkboxGrid}>
                 <label className={styles.checkboxLabel}>
-                  <input type="checkbox" value="full-time" />
+
+                  <input type="checkbox" value="full-time" checked={selectJob.includes("full-time")} 
+                  onChange={()=> handleJobType("full-time")}/>
+
                   <span>Full-time</span>
                 </label>
 
                 <label className={styles.checkboxLabel}>
-                  <input type="checkbox" value="part-time" />
+                  <input type="checkbox" value="part-time" onChange={() => handleJobType("part-time")} 
+                  checked={selectJob.includes("part-time")}/>
+
                   <span>Part-time</span>
                 </label>
 
                 <label className={styles.checkboxLabel}>
-                  <input type="checkbox" value="remote" />
+                  <input type="checkbox" value="remote"onChange={() => handleJobType("remote")} 
+                   checked={selectJob.includes("remote")}/>
                   <span>Remote</span>
                 </label>
 
                 <label className={styles.checkboxLabel}>
-                  <input type="checkbox" value="internship" />
+                  <input type="checkbox" value="internship" onChange={() => handleJobType("internship")}
+                   checked={selectJob.includes("internship")} />
                   <span>Internship</span>
                 </label>
               </div>
@@ -141,6 +238,8 @@ function JobsPage() {
 
         {/* JobCard */}
         <div className={styles.jobGrid}>
+
+
 
           {isLoading && Array.from({ length: 6 }, (_, index) => (
             <div className={styles.skeletonCard} key={`skeleton-${index}`} aria-hidden="true">
@@ -157,17 +256,30 @@ function JobsPage() {
             </div>
           ))}
 
+
+
           {!isLoading && error && (
             <p role="alert" className={styles.errorMessage}>{error}</p>
           )}
 
-          {!isLoading && !error && job.map((job)=>(
+
+
+          {/* if No Matching Job found */}
+          {!isLoading && !error && filterJob.length ===0 &&(
+            <p className={styles.noJobs}>
+              No Jobs Found. Try different Search Terms</p>
+          )}
+
+
+
+
+          {/* 4. Final Job Serach */}
+          {!isLoading && !error && filterJob.map((job)=>(
              <div className={styles.jobCard} key={job._id}>
 
             <div className={styles.companyInfo}>
 
               <div className={styles.companyLogo}>{job.company.charAt(0)}</div>
-
                 <div>
                   <h3>{job.title}</h3>
                   <p>{job.company}</p>
@@ -194,6 +306,8 @@ function JobsPage() {
 
           </div>
           ))}
+
+
 
           {/* <div className={styles.jobCard}>
 

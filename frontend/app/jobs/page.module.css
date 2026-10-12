@@ -91,6 +91,7 @@
 
 /* JobsSide */
 .jobGrid{
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -419,3 +420,18 @@
         min-height: 0;
     }
 }
+
+/* No Jobs Found Msg */
+.noJobs {
+    grid-column: 1 /-1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 22rem;
+    text-align: center;
+    color: #a78bfa ;
+    margin:0 ;
+    font-size: 20px;
+}
+

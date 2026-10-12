@@ -25,6 +25,10 @@ const jobSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  jobType: {
+    type: String,
+    required: true,
+  },
   recruiter: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User", //recruiter contains a MongoDB ObjectId that refers to a document in the User model."
