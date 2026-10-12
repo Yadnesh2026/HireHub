@@ -1,5 +1,4 @@
 const Application = require("../models/applicationSchema.js");
-const Application = require("../models/applicationSchema.js");
 const Job = require("../models/jobSchema");
 const mongoose = require("mongoose")
 

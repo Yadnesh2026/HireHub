@@ -1,33 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./page.module.css";
 import { Search, Target, TrendingUp,MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-function JobsPage() {
+type Job ={
+  _id:string,
+  title:string,
+  description:string,
+  company:string,
+  location:string,
+  salary:number,
+  skills:string[];
+}
 
- const jobs = [
-  {
-    id: "1",
-    title: "Senior UI Designer",
-    company: "Amazon",
-    location: "Bengaluru, India",
-    jobType: "Full-time",
-    workMode: "On-site",
-    experience: "Senior Level",
-    salary: "₹10L - ₹13L",
-  },
-  {
-    id: "2",
-    title: "Frontend Developer",
-    company: "Tech Company",
-    location: "Pune, India",
-    jobType: "Full-time",
-    workMode: "Remote",
-    experience: "Entry Level",
-    salary: "₹5L - ₹8L",
-  },
-];
+function JobsPage() {
+  const [job, setJob] = useState<Job[]>([]);
 
   return (
     <main className={styles.page}>
