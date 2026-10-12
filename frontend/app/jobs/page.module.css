@@ -103,6 +103,63 @@
     border-radius: 16px;
     padding: 20px;
 }
+.skeletonCard {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: 220px;
+    padding: 20px;
+    background: #171f38;
+    border: 1px solid #303a59;
+    border-radius: 16px;
+}
+.skeletonHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.skeletonLogo,
+.skeletonLine,
+.skeletonLineSmall,
+.skeletonLineShort,
+.skeletonLineFull {
+    background: linear-gradient(90deg, #272b46 25%, #3a4161 50%, #272b46 75%);
+    background-size: 200% 100%;
+    border-radius: 6px;
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+.skeletonLogo {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+}
+.skeletonTitle {
+    flex: 1;
+}
+.skeletonLine {
+    width: 80%;
+    height: 20px;
+}
+.skeletonLineSmall {
+    width: 55%;
+    height: 14px;
+    margin-top: 8px;
+}
+.skeletonLineShort {
+    width: 45%;
+    height: 14px;
+}
+.skeletonLineFull {
+    width: 100%;
+    height: 30px;
+}
+@keyframes skeletonPulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+.errorMessage {
+    color: #fca5a5;
+}
 .companyInfo{
     display: flex;
     align-items: center;

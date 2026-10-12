@@ -1,7 +1,7 @@
 "use client"
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import { Search, Target, TrendingUp,MapPin } from "lucide-react";
+import { Search, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
@@ -17,7 +17,10 @@ type Job ={
 
 function JobsPage() {
   const [job, setJob] = useState<Job[]>([]);
-  
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+
 
   //Consist of all Jobs from backend 
   useEffect(() => {
@@ -37,6 +40,9 @@ function JobsPage() {
 
     } catch (error) {
       console.error("Error fetching jobs:", error);
+      setError("Unable to load jobs. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -136,7 +142,26 @@ function JobsPage() {
         {/* JobCard */}
         <div className={styles.jobGrid}>
 
-          {job.map((job)=>(
+          {isLoading && Array.from({ length: 6 }, (_, index) => (
+            <div className={styles.skeletonCard} key={`skeleton-${index}`} aria-hidden="true">
+              <div className={styles.skeletonHeader}>
+                <div className={styles.skeletonLogo} />
+                <div className={styles.skeletonTitle}>
+                  <div className={styles.skeletonLine} />
+                  <div className={styles.skeletonLineSmall} />
+                </div>
+              </div>
+              <div className={styles.skeletonLineShort} />
+              <div className={styles.skeletonLine} />
+              <div className={styles.skeletonLineFull} />
+            </div>
+          ))}
+
+          {!isLoading && error && (
+            <p role="alert" className={styles.errorMessage}>{error}</p>
+          )}
+
+          {!isLoading && !error && job.map((job)=>(
              <div className={styles.jobCard} key={job._id}>
 
             <div className={styles.companyInfo}>
