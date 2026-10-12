@@ -5,7 +5,11 @@ const userRoute = require("./Routes/userRoute")
 const JobRoute = require("./Routes/jobRoute")
 const applicationRoute = require("./Routes/applicationRoute")
 const errMiddleware = require("./Middleware/errMiddleware");
+const cors = require("cors")
 
+app.use(cors({
+    origin:"http://localhost:3000"
+}))
 app.use(express.json())
 app.use(errMiddleware)
 app.use("/api",userRoute)

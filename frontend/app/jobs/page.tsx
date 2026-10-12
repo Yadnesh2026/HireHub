@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { Search, Target, TrendingUp,MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -16,7 +17,32 @@ type Job ={
 
 function JobsPage() {
   const [job, setJob] = useState<Job[]>([]);
+  
 
+  //Consist of all Jobs from backend 
+  useEffect(() => {
+  const allJobs = async () => {
+    try {
+      const response = await fetch("http://localhost:1000/api/job");
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch jobs");
+      }
+
+      const data = await response.json();
+
+      console.log("API response",data)
+      console.log("Job array",data.jobs)
+      setJob(data.jobs);
+
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+    }
+  };
+
+  allJobs();
+}, []);
+  
   return (
     <main className={styles.page}>
       <section>
@@ -107,9 +133,44 @@ function JobsPage() {
 
 
 
+        {/* JobCard */}
         <div className={styles.jobGrid}>
 
-          <div className={styles.jobCard}>
+          {job.map((job)=>(
+             <div className={styles.jobCard} key={job._id}>
+
+            <div className={styles.companyInfo}>
+
+              <div className={styles.companyLogo}>{job.company.charAt(0)}</div>
+
+                <div>
+                  <h3>{job.title}</h3>
+                  <p>{job.company}</p>
+                </div>
+            </div>
+
+            <p className={styles.jobLocation}>{job.location}</p>
+
+            <div className={styles.jobTags}>
+              {job.skills.map((skill)=>(
+                <span key={skill}>{skill}</span>
+              ))}
+
+              {/* <span>Full-Time</span>
+              <span>On-site</span>
+              <span>Senior Level</span> */}
+            </div>
+
+
+            <div className={styles.jobFooter}>
+              <p>{job.salary.toLocaleString("en-IN")}</p>
+              <button type="button">Details</button>
+            </div>
+
+          </div>
+          ))}
+
+          {/* <div className={styles.jobCard}>
 
             <div className={styles.companyInfo}>
 
@@ -135,13 +196,9 @@ function JobsPage() {
             </div>
 
           </div>
-
-
-          
           <div className={styles.jobCard}>Job 2</div>
-          <div className={styles.jobCard}>Job 3</div>
+          <div className={styles.jobCard}>Job 3</div> */}
           
-
         </div>
 
 
