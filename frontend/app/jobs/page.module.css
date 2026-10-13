@@ -285,6 +285,9 @@
     }
 }
 
+.reset{
+    cursor: pointer;
+}
 
 /* FilterSide */
 /* 1. Company */

@@ -160,7 +160,11 @@ function JobsPage() {
 
           <div className={styles.filterHead}>
             <h3>Filters</h3>
-            <button>Reset All</button>
+            <button className={styles.reset} onClick={()=>{
+              setSelectCompany("");
+              setSalary(15)
+              setSelectJob([])
+            }}>Reset All</button>
           </div>
 
 
@@ -301,7 +305,11 @@ function JobsPage() {
 
             <div className={styles.jobFooter}>
               <p>{job.salary.toLocaleString("en-IN")}</p>
-              <button type="button">Details</button>
+
+
+              <button type="button" onClick={()=>{
+                router.push(`/jobs/${job._id}`)
+              }}>Details</button>
             </div>
 
           </div>

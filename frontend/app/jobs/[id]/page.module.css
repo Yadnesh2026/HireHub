@@ -1,0 +1,172 @@
+
+.mainComponent {
+    min-height: 100vh;
+    padding: 40px 7%;
+    background: #0b1020;
+    color: #f1f3f9;
+}
+
+/* Job header */
+.upperSide {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    border-radius: 16px;
+}
+/* Company logo */
+.logo {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #211c42;
+    color: #a78bfa;
+    border-radius: 14px;
+    font-size: 26px;
+    font-weight: 600;
+}
+/* Left Side */
+.leftUpper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    min-width: 0;
+}
+/* Job details */
+.SecSide {
+    flex: 1;
+    min-width: 0;
+}
+
+.titleInfo h1 {
+    margin: 0 0 10px;
+    font-size: 28px;
+    font-weight: 600;
+    
+}
+
+.innerContent {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    color: #aab3cc;
+    font-size: 14px;
+}
+
+.innerContent p {
+    margin: 0;
+}
+
+/* Job type */
+.downSide {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.downSide p {
+    margin: 0;
+    padding: 6px 11px;
+    background: #191f35;
+    border-radius: 6px;
+    color: #c4b5fd;
+    font-size: 12px;
+}
+
+.rightUpper{
+    width: 240px;
+    flex-shrink: 0;
+    padding: 22px;
+    box-sizing: border-box;
+    background: #171f38;
+    border-radius: 12px;
+}
+.rightUpper h1{
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 100;
+}
+.rightUpper p{
+    margin: 0;
+    font-size: 26px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+.btn{
+    margin-top: 20px;
+}
+.btn button{
+    width: 100%;
+    padding: 12px;
+    background: #8b7cff;
+    border-radius: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.btn button:hover{
+    background: #7665f5;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .mainComponent {
+        padding: 24px 18px;
+    }
+
+    .upperSide {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .logo {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+    }
+
+    .titleInfo h1 {
+        font-size: 21px;
+    }
+
+    .innerContent {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+/* MiddleSide */
+.middleSide{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 24px 0;
+    margin: 0 0 0 6rem;
+}
+.desc h1{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.responsi h1{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.require h1{
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.rightUpper h1{
+    font-size: 20px;
+    font-weight: 600;
+}

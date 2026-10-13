@@ -1,11 +1,11 @@
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-// import styles from "./loading.module.css";
+import styles from "./page.module.css";
 
 export default function Loading() {
   return (
-    <main className={styles.loadingPage}>
-      <div className={styles.skeletonGrid}>
+    <main className={styles.page}>
+      <div className={styles.jobGrid}>
         {Array.from({ length: 6 }, (_, index) => (
           <div className={styles.skeletonCard} key={index}>
           <div className={styles.skeletonHeader}>
