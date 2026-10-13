@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation"
 import styles from "./page.module.css"
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type Job ={
     _id:string;
@@ -19,6 +20,7 @@ type Job ={
 
 
 export default function JobDetails(){
+    const router = useRouter()
     const params = useParams()
     const id = params.id
 
@@ -51,6 +53,7 @@ export default function JobDetails(){
         fetchData()
     },[id]) //[id] tells the effect to run again if the ID changes.
 
+    //If Job is Loading 
     if (isLoading) {
     return <p>Loading job details...</p>;
     }
@@ -98,7 +101,8 @@ export default function JobDetails(){
                             <p>{job.salary}</p>
                         </div>
 
-                        <div className={styles.btn}>
+                        <div className={styles.btn} 
+                        onClick={()=> router.push(`/jobs/apply?jobId=${job._id}`)}>
                             <button>Apply</button>
                         </div>
                     </div>
