@@ -1,0 +1,98 @@
+.mainComponent{
+    width: 100%;
+    max-width: 650px;
+    margin: 55px auto;
+    background: #131B30;
+    padding: 30px 30px;
+    box-sizing: border-box;
+    border-radius: 20px;
+   
+}
+.formPage h1{
+    font-size: 30px;
+    font-weight: 600;
+}
+.formPage p{
+    font-size: 15px;
+    font-weight: 200;
+    color: grey;
+}
+.name{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+.name input{
+    background: #29324A;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #35405A;
+    font-size: 16px;
+    outline: none;
+}
+.email{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+.email input{
+    background: #29324A;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #35405A;
+    font-size: 16px;
+    outline: none;
+}
+.password{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+.password input{
+    background: #29324A;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #35405A;
+    font-size: 16px;
+    outline: none;
+}
+.confrimPassword{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+.confrimPassword input{
+    background: #29324A;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #35405A;
+    font-size: 16px;
+    outline: none;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+    background: #8b7cff;
+    padding: 15px;
+    border-radius: 20px;
+    cursor: pointer;
+     transition: background-color 0.2s ease;
+}
+
+.btn:hover{
+    background: #7563F5;
+}
+
+.name input:focus,
+.email input:focus,
+.password input:focus,
+.confrimPassword input:focus {
+    border-color: #8B7CFF;
+    box-shadow: 0 0 0 2px rgba(139, 124, 255, 0.15);
+}
