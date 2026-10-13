@@ -4,11 +4,30 @@ const Job = require("../models/jobSchema")
 const createJob = async(req,res,next)=>{
     try{
     console.log("CREATE JOB CONTROLLER REACHED");
-    const{title, description, company, location, salary, skills}= req.body
+    const{
+        title,
+        description,
+        responsibilities,
+        requirements,
+        company,
+        location,
+        salary,
+        skills,
+        jobType
+    }= req.body
     const recruiter = req.user.userId
 
     const newJob = new Job({
-        title, description, company, location, salary, skills,recruiter
+        title,
+        description,
+        responsibilities,
+        requirements,
+        company,
+        location,
+        salary,
+        skills,
+        jobType,
+        recruiter
     })
     await newJob.save()
 
@@ -69,6 +88,26 @@ const getJobs = async(req,res,next)=>{
         next(err)
     }
 }
+
+// Get a single job
+const getJobById = async(req,res,next)=>{
+    try{
+        const job = await Job.findById(req.params.id)
+            .populate("recruiter","name email role")
+
+        if(!job){
+            return res.status(404).json({
+                message:"Job not found"
+            })
+        }
+
+        res.status(200).json({
+            job
+        })
+    }catch(err){
+        next(err)
+    }
+}
 //     Suppose there are 23 jobs and your limit is 10:
 // - Page 1: 10 jobs
 // - Page 2: 10 jobs
@@ -88,7 +127,17 @@ const updateJob = async(req,res,next)=>{
     try{
         const id = req.params.id
     const job = await Job.findById(id)
-    const {title,description,company, location,salary,skills} = req.body
+    const {
+        title,
+        description,
+        responsibilities,
+        requirements,
+        company,
+        location,
+        salary,
+        skills,
+        jobType
+    } = req.body
 
     if(!job){
         return res.status(404).json({
@@ -104,7 +153,15 @@ const updateJob = async(req,res,next)=>{
     //Update Job
     const updateJob = await Job.findByIdAndUpdate(
         id,{
-            title,description,company,location,salary,skills
+            title,
+            description,
+            responsibilities,
+            requirements,
+            company,
+            location,
+            salary,
+            skills,
+            jobType
         },{new:true}
     )
 
@@ -179,4 +236,4 @@ const getMyJobs = async(req,res,next)=>{
     }
 }
 
-module.exports = {createJob, getJobs, updateJob,deleteJob,getMyJobs}
+module.exports = {createJob, getJobs, getJobById, updateJob,deleteJob,getMyJobs}

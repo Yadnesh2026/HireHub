@@ -1,7 +1,7 @@
 const express = require("express")
 const authMiddleware = require("../Middleware/authMiddleware")
 const roleMiddleware = require("../Middleware/roleMiddleware")
-const {createJob,getJobs, updateJob, deleteJob, getMyJobs} = require("../Controllers/jobController")
+const {createJob,getJobs,getJobById, updateJob, deleteJob, getMyJobs} = require("../Controllers/jobController")
 const router = express.Router()
 
 
@@ -10,6 +10,9 @@ router.post("/job",authMiddleware,roleMiddleware,createJob)
 
 //Get Jobs
 router.get("/job",getJobs)
+
+// Get a single job
+router.get("/job/:id",getJobById)
 
 //Update Jobs
 router.put("/job/:id",authMiddleware,roleMiddleware,updateJob)
