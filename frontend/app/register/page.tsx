@@ -47,6 +47,8 @@ export default function Register(){
             setMessage("")
             const controller = new AbortController()
             const timeout = setTimeout(() => controller.abort(), 10000)
+
+
             const response = await fetch("http://localhost:1000/api/user",{
                 method:"POST",
                 headers:{
@@ -60,6 +62,7 @@ export default function Register(){
                     role:formData.role
                 })
             })
+            
             clearTimeout(timeout)
 
             const data = await response.json()
