@@ -2,9 +2,13 @@
 
 import { useState } from "react";
 import styles from "./page.module.css"
+import { useRouter,useSearchParams  } from "next/navigation";
 
 export default function ApplyJob(){
      const [resume, setResume] = useState<File | null>(null);
+
+     const searchParams = useSearchParams(); //useSearchParams() reads query parameters from the current URL.
+     const router = useRouter()
 
      const handleSubmit = ()=>{
         if(!resume){
@@ -31,6 +35,30 @@ export default function ApplyJob(){
 
         console.log("Resume validation",resume.name)
 
+
+        //Token after user Login    localStorage.getItem("token") retrieves the JWT saved during login.
+        const token = localStorage.getItem("token");
+
+        if(!token){
+            alert("Please log in before applying for job.");
+            router.push("/login") 
+            return;
+        }
+
+        //Get the Job Id 
+        const jobId = searchParams.get("jobId") //Used to get application JobId 
+
+        //check if job id is missing
+        if(!jobId){
+            alert("Job ID is missing. Please selecet the job first ")
+            return;
+        }
+
+        //Prepare the resume for submission
+        const applicationData = new FormData() //new FormData() creates a container for form data, including files.
+
+        applicationData.append("resume",resume)  //"resume" is the field name your backend would need to read.
+        applicationData.append("jobId",jobId)  //"jobId" identifies the job the candidate selected.
     
 
         
