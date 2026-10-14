@@ -2,8 +2,11 @@
 
 import { useState } from "react"
 import styles from "./page.module.css"
+import { useRouter } from "next/navigation"
 
 export default function Login(){
+
+    const router = useRouter()
     const [formData, setFormData] = useState({
         email:"",
         password:""
@@ -12,6 +15,7 @@ export default function Login(){
     const handleSubmit =async(e)=>{
         e.preventDefault()
 
+    
         const response = await fetch("http://localhost:1000/api/login",{
             method:"POST",
             headers:{
@@ -33,6 +37,11 @@ export default function Login(){
 
         console.log("Login Successfull")
         console.log("JWT Token",data.token)
+
+        //tempralry stores the token  //ata.token is the token returned by your backend.
+        //localStorage stores data in the browser. "token" is the key used to retrieve your JWT later.
+        localStorage.setItem("token",data.token) 
+        router.push("/jobs");
 
 
     }
