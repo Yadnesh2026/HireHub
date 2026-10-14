@@ -7,7 +7,7 @@ const upload = require("../Middleware/uploadMiddleware")
 const router = express.Router()
 
 
-//Appl for Job
+//Apply for Job
 router.post("/application/:jobId",authMiddleware,candidateMiddlware,applyJob)
 
 //get the Specfic User Application

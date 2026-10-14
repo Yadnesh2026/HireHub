@@ -10,7 +10,7 @@ export default function ApplyJob(){
      const searchParams = useSearchParams(); //useSearchParams() reads query parameters from the current URL.
      const router = useRouter()
 
-     const handleSubmit = ()=>{
+     const handleSubmit = async()=>{
         if(!resume){
             alert("Please upload the Resume")
             return;
@@ -58,7 +58,29 @@ export default function ApplyJob(){
         const applicationData = new FormData() //new FormData() creates a container for form data, including files.
 
         applicationData.append("resume",resume)  //"resume" is the field name your backend would need to read.
-        applicationData.append("jobId",jobId)  //"jobId" identifies the job the candidate selected.
+        //applicationData.append("jobId",jobId)  //"jobId" identifies the job the candidate selected.
+
+        //send te all Apply job response to backend
+        const response = await fetch( `http://localhost:1000/api/application/${jobId}`,{
+            method:"POST",
+            headers:{
+                Authorization: `Bearer ${token}`
+            },
+            body:applicationData
+        })
+
+        const data = await response.json()
+        console.log(data)
+
+        //This displays the backend's message when available, or a fallback success message.
+        if(!response.ok){
+            alert(data.message || "Applicaation not send")
+            return;
+        }
+
+        alert(data.message || "Application submitted successfully!");
+        router.push("/jobs")
+
     
 
         
