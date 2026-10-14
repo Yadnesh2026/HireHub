@@ -35,7 +35,7 @@ function Navbar() {
             Log In
           </Button>
 
-          <Button onClick={() => router.push("/signup")}>
+          <Button onClick={() => router.push("/register")}>
             Sign Up
           </Button>
         </div>

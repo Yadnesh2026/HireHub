@@ -27,13 +27,13 @@ export default function Footer() {
           <div className={styles.linkGroup}>
             <h3>For Job Seekers</h3>
             <Link href="/jobs">Browse Jobs</Link>
-            <Link href="/signup">Create Account</Link>
+            <Link href="/register">Create Account</Link>
           </div>
 
           <div className={styles.linkGroup}>
             <h3>For Employers</h3>
             <Link href="/recruiter/jobs">Post a Job</Link>
-            <Link href="/signup">Find Candidates</Link>
+            <Link href="/register">Find Candidates</Link>
           </div>
 
           <div className={styles.linkGroup}>

@@ -11,16 +11,25 @@ app.use(cors({
     origin:"http://localhost:3000"
 }))
 app.use(express.json())
-app.use(errMiddleware)
 app.use("/api",userRoute)
 app.use("/api",JobRoute)
 app.use("/api",applicationRoute)
+app.use(errMiddleware)
 
 
 
 
 
-ConnectDB()
-app.listen(1000,()=>{
-    console.log("Server is listening")
-})
+const startServer = async()=>{
+    try{
+        await ConnectDB()
+        app.listen(1000,()=>{
+            console.log("Server is listening")
+        })
+    }catch(err){
+        console.error("Database connection failed:", err.message)
+        process.exit(1)
+    }
+}
+
+startServer()
