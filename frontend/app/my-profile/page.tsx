@@ -1,8 +1,50 @@
+"use client"
+
 import styles from "./page.module.css"
 import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX } from "lucide-react";
 import Link from "next/link"
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function MyProfile(){
+    const router = useRouter()
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token")
+        if(!token){
+            router.push("/login")
+            return
+        }
+
+        const fetchData =async()=>{
+            try{
+            const response = await fetch("http://localhost:1000/api/profile",{
+            method:"GET",
+            headers:{
+                Authorization:`Bearer ${token}`
+            },
+            })
+
+            const data =await response.json()
+
+            
+            if(!response.ok){
+                throw new Error(data.message || "Something went wrong")
+            }
+
+            console.log(data.user)
+
+            }catch(err){
+                console.log(err)
+            }
+           
+        }
+
+        fetchData()
+
+        
+    },[])
+
     return(
         <div className={styles.mainComponent}>
 
