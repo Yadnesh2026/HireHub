@@ -9,7 +9,7 @@ export default function AppliedJobs(){
             <div className={styles.leftSide}>
 
                 <div className={styles.dashboard}>
-                    <LayoutDashboard size={20} />
+                    <LayoutDashboard size={20} className={styles.dashBoard_logo} />
                     <Link href="#">DashBoard</Link>
 
                 </div>

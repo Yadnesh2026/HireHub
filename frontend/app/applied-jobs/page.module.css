@@ -1,3 +1,30 @@
-leftSide:{
+.leftSide{
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+  width: 18rem;
+  height: 100vh;
+  padding: 24px 30px;
+  background:#131B30;
+  box-sizing: border-box;
+}
+
+.dashboard{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 20px;
+}
+.find{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+}
+.profile{
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 20px;
 }
