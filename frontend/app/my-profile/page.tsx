@@ -32,12 +32,17 @@ export default function MyProfile(){
 
             const data =await response.json()
 
-            
             if(!response.ok){
                 throw new Error(data.message || "Something went wrong")
             }
 
-            console.log(data.user)
+            //Added the fetch data in user(usestate)
+            setUser({
+                name:data.user.name,
+                email:data.user.email,
+                role:data.user.role
+            })
+
 
             }catch(err){
                 console.log(err)
@@ -50,7 +55,7 @@ export default function MyProfile(){
 
     const handleSubmit =(e)=>{
         e.preventDefault()
-        
+
     }
 
     return(
@@ -85,8 +90,8 @@ export default function MyProfile(){
                 <div className={styles.profileForm}>
 
                     <div className={styles.topSide}>
-                        <h2>Your Name</h2>
-                        <p>Candidate</p>
+                        <h2>{user.name}</h2>
+                        <p>{user.role}</p>
                     </div>
 
                     <div className={styles.formSide}>
@@ -108,7 +113,8 @@ export default function MyProfile(){
 
                             <div className={styles.role}>
                                 <label>Account Role</label>
-                                 <select name="role"id="role" >
+                                 <select name="role"id="role" value={user.role}
+                                 onChange={(e)=>setUser({...user, role:e.target.value})}>
                                     <option value="candidate">Candidate</option>
                                     <option value="recruiter">Recruiter</option>
                                 </select>
