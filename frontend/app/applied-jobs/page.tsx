@@ -1,8 +1,49 @@
+"use client"
+
 import styles from "./page.module.css"
 import Link from "next/link"
 import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AppliedJobs(){
+    const router = useRouter()
+    const [applications, setApplications] = useState<any[]>([])
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(()=>{
+        const fetchApplication =async()=>{
+            try{
+                const token = localStorage.getItem("token")
+                if(!token){
+                    router.push("/login")
+                }
+
+                const response = await fetch("http://localhost:1000/api/application",{
+                    method:"POST",
+                    headers:{
+                        Authorization:`Bearer ${token}`
+                    },
+                })
+
+                const data = await response.json()
+                console.log(data)
+
+                if(!response.ok){
+                    throw new Error(data.message || "Failed to fetch applications")
+                }
+                setApplications(data.applications)
+            }catch(err){
+                console.log("Erroe Fetching application",err)
+            }finally{
+                setIsLoading(false)
+            }
+        }
+
+        fetchApplication()
+    },[router])
+
+
     return(
         <div className={styles.mainComponent}>
 
@@ -29,7 +70,7 @@ export default function AppliedJobs(){
 
 
             <div className={styles.rightSide}>
-                <h1>Welcome Back!!</h1>
+                <h1>Track your Applications</h1>
                 <p>Here's your job search overview.</p>
 
                 <div className={styles.MiddleBoxes}>
@@ -57,6 +98,32 @@ export default function AppliedJobs(){
                         <h1>03</h1>
                         <p>Rejected</p>
                     </div>
+                </div>
+
+
+                <div className={styles.downSide}>
+                    <h1>Recent Application</h1>
+
+                    <div className={styles.application}>
+                        <div className={styles.logo}>A</div>
+
+                        <div className={styles.applicationDetails}>
+                            <h3>Backend Developer</h3>
+
+                            <div className={styles.companyName}>
+                                <p>TechNovaCrop</p>
+                                <span>.</span>
+                                <p>Pune</p>
+                            </div>
+
+                            <span className={styles.pending}>Pending</span>
+                        </div>
+                    </div>
+                    
+                   
+                    
+
+
                 </div>
 
 
