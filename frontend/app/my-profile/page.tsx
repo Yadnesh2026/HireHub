@@ -4,10 +4,15 @@ import styles from "./page.module.css"
 import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX } from "lucide-react";
 import Link from "next/link"
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function MyProfile(){
     const router = useRouter()
+    const [user, setUser] = useState({
+        name:"",
+        email:"",
+        role:""
+    })
 
     useEffect(()=>{
         const token = localStorage.getItem("token")
@@ -88,12 +93,14 @@ export default function MyProfile(){
 
                             <div className={styles.name}>
                                 <label htmlFor="name">Full Name</label>
-                                <input name="name" id="name" placeholder="Your Full name"/>
+                                <input name="name" id="name" placeholder="Your Full name" 
+                                value={user.name} onChange={(e)=>setUser(e.target.value)}/>
                             </div>
 
                             <div className={styles.email}>
                                 <label>Email</label>
-                                <input name="email" id="email" placeholder="you@Example.com"/>
+                                <input name="email" id="email" placeholder="you@Example.com"
+                                value={user.email}/>
                             </div>
 
                             <div className={styles.role}>
