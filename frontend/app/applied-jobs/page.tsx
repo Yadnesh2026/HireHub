@@ -70,7 +70,7 @@ export default function AppliedJobs(){
 
                 <div className={styles.profile}>
                     <UserRound size={20} />
-                    <Link href="#">My Profile</Link>
+                    <Link href="/my-profile">My Profile</Link>
                 </div>
                
             </div>

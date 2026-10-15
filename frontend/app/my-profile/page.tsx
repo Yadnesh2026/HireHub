@@ -13,6 +13,8 @@ export default function MyProfile(){
         email:"",
         role:""
     })
+    const [message, setMessage] = useState("")
+    const [err,setErr] = useState("");
 
     useEffect(()=>{
         const token = localStorage.getItem("token")
@@ -42,6 +44,7 @@ export default function MyProfile(){
                 email:data.user.email,
                 role:data.user.role
             })
+            
 
 
             }catch(err){
@@ -53,8 +56,13 @@ export default function MyProfile(){
         fetchData()
     },[])
 
+
+
     const handleSubmit =async(e)=>{
         e.preventDefault()
+
+        setMessage("")
+        setErr("")
 
         try{
 
@@ -82,12 +90,15 @@ export default function MyProfile(){
         }
 
         //After successfull changes backend send response 
-        alert(data2.message)
+        setMessage(data2.message)
 
         }catch(err){
             console.log(err)
+            setErr(err instanceof Error ? err.message :"Something went wrong")
         }
     }
+
+
 
     return(
         <div className={styles.mainComponent}>
@@ -142,19 +153,26 @@ export default function MyProfile(){
                                 value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})}/>
                             </div>
 
-                            <div className={styles.role}>
+                            {/* <div className={styles.role}>
                                 <label>Account Role</label>
-                                 <select name="role"id="role" value={user.role}
+                                 <select name="role"id="role" 
                                  onChange={(e)=>setUser({...user, role:e.target.value})}>
                                     <option value="candidate">Candidate</option>
                                     <option value="recruiter">Recruiter</option>
                                 </select>
-                            </div>
+                            </div> */}
 
                             <button className={styles.btn}>Save Changes</button>
-                           
-
                         </form>
+
+                        {message && (  //true && console.log("Hello")
+                            <p className={styles.message}>{message}</p>
+                        )}
+                        {err && (
+                            <p className={styles.err}>{err}</p>
+                        )}
+
+
                     </div>
 
                 </div>
