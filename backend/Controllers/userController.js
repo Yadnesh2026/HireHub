@@ -147,6 +147,29 @@ const loginUser = async (req, res, next) => {
  
 };
 
+//Profile 
+// Get Logged-in User Profile
+const getMyProfile = async (req, res, next) => {
+  try {
+    const userId = req.user.userId;
+
+    const user = await User.findById(userId).select("-password");
+
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      message: "Profile fetched successfully",
+      user,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   homePage,
   createUser,
@@ -154,4 +177,5 @@ module.exports = {
   getUser,
   userDelete,
   loginUser,
+  getMyProfile
 };

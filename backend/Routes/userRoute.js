@@ -24,6 +24,9 @@ router.delete("/user/:id",userDelete)
 //Login User
 router.post("/login",loginUser)
 
+//Profile
+router.get("/profile", authMiddleware, getMyProfile);
+
 router.get("/profile",authMiddleware,(req,res)=>{
     res.status(200).json({
         message:"Profile Route",
