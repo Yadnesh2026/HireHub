@@ -46,9 +46,12 @@ export default function MyProfile(){
         }
 
         fetchData()
-
-        
     },[])
+
+    const handleSubmit =(e)=>{
+        e.preventDefault()
+        
+    }
 
     return(
         <div className={styles.mainComponent}>
@@ -89,18 +92,18 @@ export default function MyProfile(){
                     <div className={styles.formSide}>
                         <h3>Personal Information</h3>
 
-                        <form>
+                        <form onSubmit={handleSubmit}>
 
                             <div className={styles.name}>
                                 <label htmlFor="name">Full Name</label>
                                 <input name="name" id="name" placeholder="Your Full name" 
-                                value={user.name} onChange={(e)=>setUser(e.target.value)}/>
+                                value={user.name} onChange={(e)=>setUser({...user,name:e.target.value})}/>
                             </div>
 
                             <div className={styles.email}>
                                 <label>Email</label>
                                 <input name="email" id="email" placeholder="you@Example.com"
-                                value={user.email}/>
+                                value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})}/>
                             </div>
 
                             <div className={styles.role}>
