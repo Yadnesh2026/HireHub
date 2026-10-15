@@ -5,6 +5,7 @@ import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX }
 import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { json } from "stream/consumers";
 
 export default function MyProfile(){
     const router = useRouter()
@@ -53,9 +54,25 @@ export default function MyProfile(){
         fetchData()
     },[])
 
-    const handleSubmit =(e)=>{
+    const handleSubmit =async(e)=>{
         e.preventDefault()
 
+        const token = localStorage.getItem("token")
+        if(!token){
+            throw new Error("Token not get")
+        }
+
+        const fetchData = await fetch("http://localhost:1000/api/profile",{
+            method:"PUT",
+            headers:{
+                "Authorization":`Bearer ${token}`,
+                "Content-type":"application/json"
+            },
+            body: JSON.stringify({ //when sending data through fetch(), we need to convert that object into a JSON string so Express can parse it using express.json().
+                name:user.name,
+                email:user.email
+            })
+        }) 
     }
 
     return(
