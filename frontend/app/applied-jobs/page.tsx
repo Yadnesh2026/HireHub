@@ -11,6 +11,7 @@ export default function AppliedJobs(){
     const [applications, setApplications] = useState<any[]>([])
     const [isLoading, setIsLoading] = useState(true);
 
+    //Fetch And send the data to backend 
     useEffect(()=>{
         const fetchApplication =async()=>{
             try{
@@ -43,6 +44,12 @@ export default function AppliedJobs(){
         fetchApplication()
     },[router])
 
+    //Total applications
+    const totalApplications = applications.length; 
+
+    const pendingApplications = applications.filter((app)=> app.status === "pending").length;
+    const shortlistedApplications = applications.filter((app)=>app.status === "shortlisted").length
+    const rejectedApplications = applications.filter((app)=>app.status === "rejected")
 
     return(
         <div className={styles.mainComponent}>
