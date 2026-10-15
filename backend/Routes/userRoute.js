@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const{homePage, createUser, updateUser, getUser, userDelete, loginUser} = require("../Controllers/userController")
+const{getMyProfile, homePage, createUser, updateUser, getUser, userDelete, loginUser} = require("../Controllers/userController")
 const authMiddleware = require("../Middleware/authMiddleware")
 const validateMiddleware = require("../Middleware/validationMiddleware")
 
@@ -16,7 +16,9 @@ router.get("/user/:id",getUser)
 router.post("/user",validateMiddleware, createUser)
 
 //update User
-router.put("/user/:id",authMiddleware,updateUser)
+// router.put("/user/:id",authMiddleware,updateUser)
+router.put("/profile",authMiddleware,updateUser)
+
 
 //Delete User
 router.delete("/user/:id",userDelete)
