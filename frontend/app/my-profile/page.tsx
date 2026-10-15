@@ -5,7 +5,6 @@ import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX }
 import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { json } from "stream/consumers";
 
 export default function MyProfile(){
     const router = useRouter()
@@ -57,6 +56,8 @@ export default function MyProfile(){
     const handleSubmit =async(e)=>{
         e.preventDefault()
 
+        try{
+
         const token = localStorage.getItem("token")
         if(!token){
             throw new Error("Token not get")
@@ -73,6 +74,19 @@ export default function MyProfile(){
                 email:user.email
             })
         }) 
+
+        const data2 = await fetchData.json()
+
+        if(!fetchData.ok){
+            throw new Error(data2.message || "Data not fetched")
+        }
+
+        //After successfull changes backend send response 
+        alert(data2.message)
+
+        }catch(err){
+            console.log(err)
+        }
     }
 
     return(
