@@ -49,18 +49,20 @@ export default function MyProfile(){
                                 <input name="name" id="name" placeholder="Your Full name"/>
                             </div>
 
-                            <div className="email">
+                            <div className={styles.email}>
                                 <label>Email</label>
                                 <input name="email" id="email" placeholder="you@Example.com"/>
                             </div>
 
-                            <div className="role">
+                            <div className={styles.role}>
                                 <label>Account Role</label>
                                  <select name="role"id="role" >
                                     <option value="candidate">Candidate</option>
                                     <option value="recruiter">Recruiter</option>
                                 </select>
                             </div>
+
+                            <button className={styles.btn}>Save Changes</button>
                            
 
                         </form>
