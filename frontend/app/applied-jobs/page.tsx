@@ -17,11 +17,12 @@ export default function AppliedJobs(){
             try{
                 const token = localStorage.getItem("token")
                 if(!token){
-                    router.push("/login")
+                    router.push("/login");
+                    return;
                 }
 
                 const response = await fetch("http://localhost:1000/api/application",{
-                    method:"POST",
+                    method:"GET",
                     headers:{
                         Authorization:`Bearer ${token}`
                     },
@@ -49,7 +50,7 @@ export default function AppliedJobs(){
 
     const pendingApplications = applications.filter((app)=> app.status === "pending").length;
     const shortlistedApplications = applications.filter((app)=>app.status === "shortlisted").length
-    const rejectedApplications = applications.filter((app)=>app.status === "rejected")
+    const rejectedApplications = applications.filter((app)=>app.status === "rejected").length
 
     return(
         <div className={styles.mainComponent}>
@@ -84,25 +85,25 @@ export default function AppliedJobs(){
 
                     <div className={styles.firstBox}>
                         <FileCheck size={18} color="#A78BFA" />
-                        <h1>04</h1>
+                        <h1>{totalApplications}</h1>
                         <p>Applications</p>
                     </div>
 
                     <div className={styles.SecBox}>
                         <Clock3 size={18} color="#FBBF24" />
-                        <h1>03</h1>
+                        <h1>{pendingApplications}</h1>
                         <p>Pending</p>
                     </div>
 
                      <div className={styles.ThirdBox}>
                         <UserCheck size={18} color="#34D399" />
-                        <h1>03</h1>
+                        <h1>{shortlistedApplications}</h1>
                         <p>Shortlisted</p>
                     </div>
 
                      <div className={styles.fourthBox}>
                        <CircleX size={18} color="#F87171" />
-                        <h1>03</h1>
+                        <h1>{rejectedApplications}</h1>
                         <p>Rejected</p>
                     </div>
                 </div>
@@ -111,21 +112,35 @@ export default function AppliedJobs(){
                 <div className={styles.downSide}>
                     <h1>Recent Application</h1>
 
-                    <div className={styles.application}>
-                        <div className={styles.logo}>A</div>
+                                        {isLoading ? (
+                        <p>Loading applications...</p>
+                    ) : applications.length === 0 ? (
+                        <p>You haven't applied for any jobs yet.</p>
+                    ) : (
+                        applications.map((app) => (
+                            <div className={styles.application} key={app._id}>
+                                <div className={styles.logo}>
+                                    {app.job?.company?.charAt(0) || "J"}
+                                </div>
 
-                        <div className={styles.applicationDetails}>
-                            <h3>Backend Developer</h3>
+                                <div className={styles.applicationDetails}>
+                                    <h3>{app.job?.title || "Job title unavailable"}</h3>
 
-                            <div className={styles.companyName}>
-                                <p>TechNovaCrop</p>
-                                <span>.</span>
-                                <p>Pune</p>
+                                    <div className={styles.companyName}>
+                                        <p>{app.job?.company || "Company unavailable"}</p>
+                                        <span>·</span>
+                                        <p>{app.job?.location || "Location unavailable"}</p>
+                                    </div>
+
+                                    <span className={styles.pending}>
+                                        {app.status}
+                                    </span>
+                                </div>
                             </div>
+                        ))
+                    )}
 
-                            <span className={styles.pending}>Pending</span>
-                        </div>
-                    </div>
+                  
                     
                    
                     

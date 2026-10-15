@@ -38,7 +38,7 @@
 .rightSide{
   margin: 20px;
   padding: 0 10px;
-   width: 100%;
+  width: 100%;
 }
 .rightSide h1{
   font-size: 35px;
@@ -69,6 +69,18 @@
   padding: 20px;
 }
 
+.dashboard:hover,
+.find:hover,
+.profile:hover {
+    background: #1e2840;
+}
+.dashboard,
+.find,
+.profile {
+  padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
 
 /* DownSide */
 .downSide h1{
@@ -135,3 +147,7 @@
   border-radius: 20px;
   font-size: 12px;
 }
+
+
+/* Active-Ness of SideBar */
+
