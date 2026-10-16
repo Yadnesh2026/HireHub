@@ -24,7 +24,7 @@
 .rightSide{
     display:flex ;
     align-items: center;
-    gap: 28px;
+    gap: 32px;
 }
 .rightSide > a{
     color: #dce2f5;
@@ -39,7 +39,68 @@
 .authBtns{
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 18px;
+}
+.profileMenu {
+  position: relative;
+}
+.profileButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  color: #dce2f5;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.profileButton:hover,
+.profileButton[aria-expanded="true"] {
+  color: #ffffff;
+  background: transparent;
+}
+.profileDropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  width: 180px;
+  padding: 10px;
+  background: #131b30;
+  border: 1px solid #303a59;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+.profileLink,
+.dropdownLogout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px;
+  color: #f5f7ff;
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  font-size: 15px;
+  text-decoration: none;
+  text-align: left;
+  cursor: pointer;
+}
+.profileLink:hover {
+  background: #1e2840;
+}
+.dropdownLogout {
+  color: #ff7777;
+}
+.dropdownLogout:hover {
+  background: #3a202d;
+}
+.dropdownDivider {
+  height: 1px;
+  margin: 8px 0;
+  background: #303a59;
 }
 .authBtns button:first-child{
     color: #dce2f5;
@@ -57,7 +118,7 @@
 }
 
 /* Sign Up button */
-.authBtns button:last-child {
+.signUpButton {
   color: #ffffff;
   background: #8b7cff;
   border: 1px solid #8b7cff;
@@ -69,7 +130,7 @@
   cursor: pointer;
 }
 
-.authBtns button:last-child:hover {
+.signUpButton:hover {
   background: #7665f5;
   border-color: #7665f5;
   transform: translateY(-1px);
@@ -98,7 +159,7 @@
   }
 
   .authBtns button:first-child,
-  .authBtns button:last-child {
+  .signUpButton {
     padding: 8px 10px;
     font-size: 12px;
   }

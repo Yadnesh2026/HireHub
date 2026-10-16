@@ -1,10 +1,10 @@
 "use client"
 
 import styles from "./page.module.css"
-import Link from "next/link"
-import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX } from "lucide-react";
+import { FileCheck, Clock3, UserCheck, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import LeftSidebar from "@/components/LeftSidebar";
 
 export default function AppliedJobs(){
     const router = useRouter()
@@ -55,26 +55,7 @@ export default function AppliedJobs(){
     return(
         <div className={styles.mainComponent}>
 
-            <div className={styles.leftSide}>
-
-                <div className={styles.dashboard}>
-                    <LayoutDashboard size={20} className={styles.dashBoard_logo} />
-                    <Link href="#">DashBoard</Link>
-
-                </div>
-               
-                <div className={styles.find}>
-                    <Search className={styles.featureIcon} />
-                    <Link href="/jobs">Find Jobs</Link>
-                </div>
-
-                <div className={styles.profile}>
-                    <UserRound size={20} />
-                    <Link href="/my-profile">My Profile</Link>
-                </div>
-
-               
-            </div>
+            <LeftSidebar activeItem="dashboard" />
 
 
 

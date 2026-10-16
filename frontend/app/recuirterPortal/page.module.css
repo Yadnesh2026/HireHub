@@ -1,0 +1,63 @@
+
+.mainComponent{
+    display: flex;
+}
+.rightSide{
+    margin: 25px auto;
+    width: 90%;
+    max-width: 950px;
+}
+.rightSide h1{
+    font-size: 35px;
+    font-weight: 600;
+}
+.rightSide p{
+    color: gray;
+    font-size: 15px;
+}
+.postJob{
+    background: #a78bfa;
+    padding: 50px 30px;
+    margin: 20px;
+    border-radius: 20px;
+}
+.postJob p{
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+.Middleboxes{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap:2.5rem;
+    padding-top: 30px;
+    margin: 30px auto;
+    width: 100%;
+}
+.Middleboxes div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.Middleboxes h1{
+    font-size: 30px;
+} 
+
+.downSide{
+    background: #0f1e42;
+    padding: 20px;
+    border-radius: 20px;
+}
+.downSide h1{
+    font-size: 25px;
+}
+.jobPost{
+    border-top: 1px solid #a78bfa;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+

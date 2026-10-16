@@ -1,10 +1,5 @@
 .page {
-  background: linear-gradient(
-    135deg,
-    #0b1020 0%,
-    #151832 50%,
-    #211640 100%
-  );
+  background: var(--home-background);
 }
 
 .mainLanding {

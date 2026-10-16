@@ -1,0 +1,66 @@
+.mainComponent{
+    margin: 25px auto;
+    width: 100%;
+    max-width: 1000px;
+}
+.upperSide h1{
+    font-size: 35px;
+    font-weight: 600;
+}
+.upperSide p{
+    color: grey;
+    font-size: 15px;
+    border-bottom: 1px solid;
+    padding-bottom: 15px;
+}
+
+/* formSide */
+.formSide h2{
+    font-size: 20px;
+    padding: 10px 0;
+}
+.title,
+.company,
+.location,
+.salary,
+.jobType,
+.skills,
+.description{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.titleCompany,
+.locationSalary{
+    display: flex;
+}
+
+
+.jobType select,
+.description textarea {
+    width: 100%;
+    background-color: #0b1020;
+    color: #e5e7eb;
+    border: 1px solid #303b52;
+    border-radius: 6px;
+    padding: 15px 12px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.jobType select {
+    cursor: pointer;
+}
+
+.description textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.jobType select:focus,
+.description textarea:focus {
+    border-color: #7652ed;
+}

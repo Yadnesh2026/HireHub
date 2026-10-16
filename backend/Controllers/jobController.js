@@ -1,4 +1,5 @@
 const Job = require("../models/jobSchema")
+const Application = required("../models/applicationSchema.js")
 
 //Create Job
 const createJob = async(req,res,next)=>{
@@ -226,9 +227,28 @@ const getMyJobs = async(req,res,next)=>{
     const loggedIn = req.user.userId
     const job = await Job.find({recruiter:loggedIn})
 
+    const jobIds = job.map((job)=> job._id)
+
+    const totalApplicants = await Application.countDocuments({
+        job:{$in:jobIds}
+    })
+
+    const shortlisted  = await Application.countDocuments({
+        job:{$in:jobIds}
+    })
+    const pendingReview = await Application.countDocuments({
+    job: { $in: jobIds },
+    status: "pending"
+});
+
+
+
     res.status(200).json({
         message:"All Your Jobs",
-        job:job
+        job:job,
+        totalApplicants:totalApplicants,
+        shortlisted:shortlisted,
+        pendingReview:pendingReview
     })
 
     }catch(err){

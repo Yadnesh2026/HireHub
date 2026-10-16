@@ -1,0 +1,29 @@
+.leftSide {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 22px;
+  width: 15rem;
+  min-width: 15rem;
+  max-width: 15rem;
+  flex: 0 0 15rem;
+  height: 100vh;
+  padding: 24px 30px;
+  background: #131b30;
+  box-sizing: border-box;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 17px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.navItem:hover,
+.active {
+  background: #1e2840;
+}

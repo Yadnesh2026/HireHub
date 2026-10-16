@@ -2,41 +2,6 @@
   display: flex;
 }
 
-/* bar Left */
-.leftSide{
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 22px;
-  width: 15rem;
-  min-width: 15rem;
-  max-width: 15rem;
-  flex: 0 0 15rem;
-  height: 100vh;
-  padding: 24px 30px;
-  background:#131B30;
-  box-sizing: border-box;
-}
-
-.dashboard{
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 17px;
-}
-.find{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 17px;
-}
-.profile{
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  font-size:17px;
-}
-
 /* Bar Right */
 .rightSide{
   margin: 20px;
@@ -70,19 +35,6 @@
   gap: 10px;
 
   padding: 20px;
-}
-
-.dashboard:hover,
-.find:hover,
-.profile:hover {
-    background: #1e2840;
-}
-.dashboard,
-.find,
-.profile {
-  padding: 10px;
-    border-radius: 8px;
-    transition: background 0.2s ease, color 0.2s ease;
 }
 
 /* DownSide */

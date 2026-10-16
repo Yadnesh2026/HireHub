@@ -1,10 +1,9 @@
 "use client"
 
 import styles from "./page.module.css"
-import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX } from "lucide-react";
-import Link from "next/link"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import LeftSidebar from "@/components/LeftSidebar";
 
 export default function MyProfile(){
     const router = useRouter()
@@ -110,26 +109,7 @@ export default function MyProfile(){
     return(
         <div className={styles.mainComponent}>
 
-             <div className={styles.leftSide}>
-
-                <div className={styles.dashboard}>
-                    <LayoutDashboard size={20} className={styles.dashBoard_logo} />
-                    <Link href="/applied-jobs">DashBoard</Link>
-
-                </div>
-               
-                <div className={styles.find}>
-                    <Search className={styles.featureIcon} />
-                    <Link href="/jobs">Find Jobs</Link>
-                </div>
-
-                <div className={styles.profile}>
-                    <UserRound size={20} />
-                    <Link href="#">My Profile</Link>
-                </div>
-
-               
-            </div>
+            <LeftSidebar activeItem="profile" />
 
 
 

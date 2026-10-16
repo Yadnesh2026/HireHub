@@ -13,6 +13,7 @@ import { UserRound } from "lucide-react";
 function Navbar() {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
 
   useEffect(()=>{
     setIsLoggedIn(!!localStorage.getItem("token"))  //What does !! mean here? Token exists → true, - Token doesn't exist → false
@@ -40,14 +41,38 @@ function Navbar() {
           {isLoggedIn ? (
           <>
               <Link href="/applied-jobs">Dashboard</Link>
-              <LogoutBtn/> 
-              <Link href="/my-profile"><UserRound size={22} /></Link>
+              <div className={styles.profileMenu}>
+                <button
+                  type="button"
+                  className={styles.profileButton}
+                  aria-label="Open user menu"
+                  aria-expanded={isProfileOpen}
+                  onClick={() => setIsProfileOpen((isOpen) => !isOpen)}
+                >
+                  <UserRound size={22} />
+                </button>
+
+                {isProfileOpen && (
+                  <div className={styles.profileDropdown}>
+                    <Link
+                      href="/my-profile"
+                      className={styles.profileLink}
+                      onClick={() => setIsProfileOpen(false)}
+                    >
+                      <UserRound size={18} />
+                      <span>My Profile</span>
+                    </Link>
+                    <div className={styles.dropdownDivider} />
+                    <LogoutBtn className={styles.dropdownLogout} />
+                  </div>
+                )}
+              </div>
           </>
           ) :(
           <>
             <Button variant="ghost"  onClick={() => router.push("/login")}>Log In</Button>
 
-            <Button onClick={() => router.push("/register")}>
+            <Button className={styles.signUpButton} onClick={() => router.push("/register")}>
               Sign Up
             </Button>
           </>

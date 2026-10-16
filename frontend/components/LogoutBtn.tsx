@@ -4,7 +4,11 @@ import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
 import styles from "./LogoutBtn.module.css";
 
-export default function LogoutBtn(){
+type LogoutBtnProps = {
+    className?: string;
+};
+
+export default function LogoutBtn({ className = "" }: LogoutBtnProps){
     const router = useRouter()
 
     const handleSubmit =()=>{
@@ -13,7 +17,7 @@ export default function LogoutBtn(){
     }
 
     return(
-        <button className={styles.logoutButton} onClick={handleSubmit}>
+        <button className={`${styles.logoutButton} ${className}`} onClick={handleSubmit}>
             <LogOut size={18}/>
             <span>Logout</span>
         </button>

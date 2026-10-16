@@ -8,9 +8,18 @@
   box-sizing: border-box;
 }
 
+:root {
+  --home-background: linear-gradient(
+    135deg,
+    #0b1020 0%,
+    #151832 50%,
+    #211640 100%
+  );
+}
+
 body {
   margin: 0;
-  background-color: #0b1020;
+  background: var(--home-background);
   color: #f5f7ff;
   font-family: var(--font-jakarta), sans-serif;
 }
@@ -132,9 +141,11 @@ body {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    background: var(--home-background);
+    @apply text-foreground;
   }
   html {
+    background: var(--home-background);
     @apply font-sans;
   }
 }

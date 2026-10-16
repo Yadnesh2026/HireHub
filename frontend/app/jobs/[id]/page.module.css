@@ -2,7 +2,7 @@
 .mainComponent {
     min-height: 100vh;
     padding: 40px 7%;
-    background: #0b1020;
+    background: var(--home-background);
     color: #f1f3f9;
 }
 

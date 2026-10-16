@@ -1,7 +1,7 @@
 .main {
     min-height: 100vh;
     padding: 55px 20%;
-    background-color: #0B1020;
+    background: var(--home-background);
     color: #F1F3F9;
 }
 
