@@ -6,11 +6,20 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import LogoutBtn from "./LogoutBtn";
+import { UserRound } from "lucide-react";
 
 function Navbar() {
   const router = useRouter();
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  useEffect(()=>{
+    setIsLoggedIn(!!localStorage.getItem("token"))  //What does !! mean here? Token exists → true, - Token doesn't exist → false
+  })
 
   return (
+
     <nav className={styles.Navbar}>
       <div className={styles.leftSide}>
         <Link href="/">
@@ -28,17 +37,24 @@ function Navbar() {
         <Link href="/jobs">Find Jobs</Link>
 
         <div className={styles.authBtns}>
-          <Button
-            variant="ghost"
-            onClick={() => router.push("/login")}
-          >
-            Log In
-          </Button>
+          {isLoggedIn ? (
+          <>
+              <Link href="/applied-jobs">Dashboard</Link>
+              <LogoutBtn/> 
+              <Link href="/my-profile"><UserRound size={22} /></Link>
+          </>
+          ) :(
+          <>
+            <Button variant="ghost"  onClick={() => router.push("/login")}>Log In</Button>
 
-          <Button onClick={() => router.push("/register")}>
-            Sign Up
-          </Button>
+            <Button onClick={() => router.push("/register")}>
+              Sign Up
+            </Button>
+          </>
+
+          )}
         </div>
+
       </div>
     </nav>
   );

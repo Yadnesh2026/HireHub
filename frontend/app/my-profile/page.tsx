@@ -127,6 +127,7 @@ export default function MyProfile(){
                     <UserRound size={20} />
                     <Link href="#">My Profile</Link>
                 </div>
+
                
             </div>
 

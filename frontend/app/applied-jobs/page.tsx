@@ -5,7 +5,6 @@ import Link from "next/link"
 import { Search,UserRound,LayoutDashboard,FileCheck, Clock3,UserCheck, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import LogoutBtn from "@/components/LogoutBtn";
 
 export default function AppliedJobs(){
     const router = useRouter()
@@ -74,7 +73,6 @@ export default function AppliedJobs(){
                     <Link href="/my-profile">My Profile</Link>
                 </div>
 
-                <LogoutBtn/>
                
             </div>
 
