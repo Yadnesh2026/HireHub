@@ -36,6 +36,20 @@
   font-size:17px;
 }
 
+.dashboard:hover,
+.find:hover,
+.profile:hover {
+  background: #1e2840;
+}
+
+.dashboard,
+.find,
+.profile {
+  padding: 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
 /* MyProfile */
 .Myprofile{
   flex: 1;

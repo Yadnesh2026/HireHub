@@ -15,6 +15,7 @@ export default function MyProfile(){
     })
     const [message, setMessage] = useState("")
     const [err,setErr] = useState("");
+    const [saving, setSaving]= useState(false)
 
     useEffect(()=>{
         const token = localStorage.getItem("token")
@@ -57,9 +58,11 @@ export default function MyProfile(){
     },[])
 
 
-
+    //Update After form su
     const handleSubmit =async(e)=>{
         e.preventDefault()
+
+        setSaving(true)
 
         setMessage("")
         setErr("")
@@ -95,8 +98,12 @@ export default function MyProfile(){
         }catch(err){
             console.log(err)
             setErr(err instanceof Error ? err.message :"Something went wrong")
+        }finally{
+            setSaving(false) //stop saving
         }
     }
+
+ 
 
 
 
@@ -162,7 +169,8 @@ export default function MyProfile(){
                                 </select>
                             </div> */}
 
-                            <button className={styles.btn}>Save Changes</button>
+                            <button className={styles.btn}>
+                            {saving?"saving...":"Save Changes"}</button>
                         </form>
 
                         {message && (  //true && console.log("Hello")

@@ -26,6 +26,7 @@ function JobsPage() {
   const [job, setJob] = useState<Job[]>([]);  //For fetching the Jobs
   const [isLoading, setIsLoading] = useState(true); //For loading Skeleton
   const [error, setError] = useState<string | null>(null); //For showing error
+  const [userName, setUserName] = useState("User");
   const [search, setSearch] = useState("") //Search from Jobs page search Bar
   const [locationSearch, setLocationSearch] = useState("") //Search for location
 
@@ -33,6 +34,37 @@ function JobsPage() {
   const[selectCompany, setSelectCompany] = useState("");
   const [salary, setSalary] = useState(15);                                                                                       
   const [selectJob, setSelectJob] = useState<string[]>([])
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        return;
+      }
+
+      try {
+        const response = await fetch("http://localhost:1000/api/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.message || "Failed to fetch profile");
+        }
+
+        if (data.user?.name) {
+          setUserName(data.user.name);
+        }
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
 
 
 
@@ -132,7 +164,7 @@ function JobsPage() {
       <section>
 
         <div className={styles.nameBar}>
-          <h1> Welcome Back, <span>User</span> </h1>
+          <h1> Welcome Back, <span>{userName}</span> </h1>
         </div>
 
 
