@@ -28,17 +28,35 @@
 .description{
     display: flex;
     flex-direction: column;
+    flex: 1;
 }
 .titleCompany,
 .locationSalary{
     display: flex;
     gap: 25px;
+    width: 100%;
 }
 
-.titleCompany input{
+.titleCompany label,
+.locationSalary label,
+.skills label{
+    padding: 10px 0;
+}
+.titleCompany input,
+.locationSalary input,
+.skills input{
     background: #131f3d;
+    padding: 10px;
+    background: #29324A;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #35405A;
+    font-size: 16px;
+    outline: none;
 }
-
+.jobType{
+    padding: 10px 0;
+}
 
 
 
@@ -54,6 +72,7 @@
 .jobType select,
 .description textarea {
     width: 100%;
+    padding: 10px 0;
     background-color: #0b1020;
     color: #e5e7eb;
     border: 1px solid #303b52;
