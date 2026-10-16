@@ -53,8 +53,8 @@ export default function postJob(){
                         <input placeholder="e.g 600000" name="Skills" id="Skills"/>
                     </div>
 
-                    <div>
-                        <label className={styles.description}>Job Description</label>
+                    <div className={styles.description}>
+                        <label htmlFor="description">Job Description</label>
                         <textarea
                             name="description"
                             id="description"
@@ -62,6 +62,9 @@ export default function postJob(){
                             rows={5}
                         />
                     </div>
+
+
+                    <button className={styles.publishBtn}>Publish Job</button>
 
 
                     

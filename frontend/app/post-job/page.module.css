@@ -1,7 +1,7 @@
 .mainComponent{
     margin: 25px auto;
     width: 100%;
-    max-width: 1000px;
+    max-width: 900px;
 }
 .upperSide h1{
     font-size: 35px;
@@ -39,7 +39,8 @@
 
 .titleCompany label,
 .locationSalary label,
-.skills label{
+.skills label,
+.description label{
     padding: 10px 0;
 }
 .titleCompany input,
@@ -57,23 +58,11 @@
 .jobType{
     padding: 10px 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 .jobType select,
 .description textarea {
     width: 100%;
     padding: 10px 0;
-    background-color: #0b1020;
+    background-color: #29324A;
     color: #e5e7eb;
     border: 1px solid #303b52;
     border-radius: 6px;
@@ -96,4 +85,27 @@
 .jobType select:focus,
 .description textarea:focus {
     border-color: #7652ed;
+}
+
+.publishBtn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: #7652ed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+     transition: background 0.3s ease, transform 0.2s ease;
+}
+.publishBtn:hover {
+    background: #6240d8;
+    transform: translateY(-2px);
+}
+
+.publishBtn:active {
+    transform: translateY(0);
 }
