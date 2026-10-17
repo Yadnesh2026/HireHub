@@ -67,10 +67,14 @@ export default function RecuirterPortal(){
                 <h1>Recruiter Dashboard</h1>
                 <p>Manage your hiring activity</p>
 
-                <div className={styles.postJob}>
+                <button
+                    type="button"
+                    className={styles.postJob}
+                    onClick={() => router.push("/post-job")}
+                >
                     <p>+</p>
                     <p>Post a Job</p>
-                </div>
+                </button>
 
                 <div className={styles.Middleboxes}>
                     <div>

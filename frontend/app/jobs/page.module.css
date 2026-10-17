@@ -93,7 +93,10 @@
     min-width: 0; /* allows the grid to shrink within its parent instead of overflowing.*/
 }
 .jobCard{
-    align-self: start; /*This tells the card to stay at the height its content needs instead of stretching vertically.*/
+    height: 270px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     background: #171f38;
     border: 1px solid #303a5a;
     border-radius: 16px;
@@ -177,6 +180,9 @@
     font-weight: 600;
     color: #f1f3f9;
     margin: 0 0 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .companyInfo p{
     font-size: 14px;
@@ -193,6 +199,9 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    min-height: 32px;
+    max-height: 72px;
+    overflow: hidden;
 }
 .jobTags span{
     background: #272b46;
@@ -206,7 +215,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    margin-top: 20px;
+    margin-top: auto;
+    padding-top: 20px;
 }
 
 .jobFooter p{

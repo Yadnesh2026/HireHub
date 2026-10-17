@@ -16,10 +16,17 @@
     font-size: 15px;
 }
 .postJob{
+    display: block;
+    width: calc(100% - 40px);
+    border: none;
     background: #a78bfa;
     padding: 50px 30px;
     margin: 20px;
     border-radius: 20px;
+    cursor: pointer;
+}
+.postJob:hover{
+    background: #9275ef;
 }
 .postJob p{
     color: white;
@@ -60,4 +67,3 @@
     padding: 15px 0;
     margin-top: 20px;
 }
-

@@ -325,9 +325,12 @@ function JobsPage() {
             <p className={styles.jobLocation}>{job.location}</p>
 
             <div className={styles.jobTags}>
-              {job.skills.map((skill)=>(
+              {job.skills.slice(0, 3).map((skill)=>(
                 <span key={skill}>{skill}</span>
               ))}
+              {job.skills.length > 3 && (
+                <span>+{job.skills.length - 3} more</span>
+              )}
 
               {/* <span>Full-Time</span>
               <span>On-site</span>
@@ -336,7 +339,7 @@ function JobsPage() {
 
 
             <div className={styles.jobFooter}>
-              <p>{job.salary.toLocaleString("en-IN")}</p>
+              <p>₹{job.salary.toLocaleString("en-IN")}</p>
 
 
               <button type="button" onClick={()=>{

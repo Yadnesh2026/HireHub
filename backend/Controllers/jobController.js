@@ -1,5 +1,5 @@
 const Job = require("../models/jobSchema")
-const Application = required("../models/applicationSchema.js")
+const Application = require("../models/applicationSchema.js")
 
 //Create Job
 const createJob = async(req,res,next)=>{

@@ -55,6 +55,28 @@
     font-size: 16px;
     outline: none;
 }
+.salaryInput{
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #29324A;
+    border: 1px solid #35405A;
+    border-radius: 10px;
+}
+.salaryInput span{
+    padding-left: 12px;
+    color: #c4b5fd;
+    font-size: 16px;
+}
+.salaryInput input{
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+.salaryInput input:focus{
+    outline: none;
+}
 .jobType {
     display: flex;
     flex-direction: column;

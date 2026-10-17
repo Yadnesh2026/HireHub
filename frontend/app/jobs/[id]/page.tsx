@@ -98,7 +98,7 @@ export default function JobDetails(){
                     <div className={styles.rightUpper}>
                         <div>
                             <h1>Salary</h1>
-                            <p>{job.salary}</p>
+                            <p>₹{job.salary.toLocaleString("en-IN")}</p>
                         </div>
 
                         <div className={styles.btn} 
@@ -123,12 +123,20 @@ export default function JobDetails(){
 
                     <div className={styles.responsi}>
                         <h1>Responsibilities</h1>
-                        <p>{job.responsibilities}</p>
+                        <ul>
+                            {job.responsibilities.split("\n").filter(Boolean).map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
                     </div>
 
                     <div className={styles.require}>
                         <h1>Requirements</h1>
-                        <p>{job.requirements}</p>
+                        <ul>
+                            {job.requirements.split("\n").filter(Boolean).map((item, index) => (
+                                <li key={index}>{item}</li>
+                            ))}
+                        </ul>
                     </div>
                   
                 </div>

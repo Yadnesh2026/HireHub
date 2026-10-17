@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import styles from "./page.module.css"
+import { useRouter } from "next/navigation"
 
 export default function postJob(){
     const [formData, setFormData] = useState({
@@ -10,8 +11,12 @@ export default function postJob(){
         salary:"",
         jobType:"",
         description:"",
+        responsibilities:"",
+        requirements:"",
         skills:""
     })
+
+    const router = useRouter()
 
     const handleSubmit =async(e)=>{
         e.preventDefault()
@@ -23,8 +28,7 @@ export default function postJob(){
                     throw new Error("Please log in first");
                 }
 
-                const fetchData = async()=>{
-                    const response = await fetch("http://localhost:1000/api/job",{
+                const response = await fetch("http://localhost:1000/api/job",{
                     method:"POST",
                     headers:{
                         "Content-type":"application/json",
@@ -47,9 +51,8 @@ export default function postJob(){
             }
 
             alert(data.message || "Job Created");
-        }
 
-        fetchData()
+            router.push("/jobs")
 
         }catch(err){
             console.log(err)
@@ -60,9 +63,6 @@ export default function postJob(){
 
 
     
-
-   
-
     return(
         <div className={styles.mainComponent}>
 
@@ -97,9 +97,12 @@ export default function postJob(){
                         </div>
 
                         <div className={styles.salary}>
-                            <label htmlFor="salary">Salary</label>
-                            <input placeholder="e.g 600000" name="salary" id="salary"
+                            <label htmlFor="salary">Salary (in ₹)</label>
+                            <div className={styles.salaryInput}>
+                                <span>₹</span>
+                                <input type="number" min="0" placeholder="e.g 600000" name="salary" id="salary"
                              value={formData.salary} onChange={(e) => setFormData({ ...formData, salary: e.target.value })}/>
+                            </div>
                         </div>
                     </div>
 
@@ -117,7 +120,7 @@ export default function postJob(){
 
                     <div className={styles.skills}>
                         <label htmlFor="skills">Required Skills</label>
-                        <input placeholder="e.g 600000" name="skills" id="skills"
+                        <input placeholder="e.g MERN Stack, Devops" name="skills" id="skills"
                         value={formData.skills} onChange={(e) => setFormData({ ...formData, skills: e.target.value })}/>
                     </div>
 
@@ -129,6 +132,30 @@ export default function postJob(){
                             placeholder="Describe the role, responsibilities, and expectations..."
                             rows={5}
                             value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                        />
+                    </div>
+
+                    <div className={styles.description}>
+                        <label htmlFor="responsibilities">Responsibilities</label>
+                        <textarea
+                            name="responsibilities"
+                            id="responsibilities"
+                            placeholder={"Add one responsibility per line...\nExample: Build and maintain REST APIs\nExample: Collaborate with frontend developers"}
+                            rows={5}
+                            value={formData.responsibilities}
+                            onChange={(e) => setFormData({ ...formData, responsibilities: e.target.value })}
+                        />
+                    </div>
+
+                    <div className={styles.description}>
+                        <label htmlFor="requirements">Requirements</label>
+                        <textarea
+                            name="requirements"
+                            id="requirements"
+                            placeholder={"Add one requirement per line...\nExample: 2+ years of Node.js experience\nExample: Strong problem-solving skills"}
+                            rows={5}
+                            value={formData.requirements}
+                            onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
                         />
                     </div>
 
