@@ -61,9 +61,6 @@ export default function postJob(){
     }
 
 
-
-    
-
     
     return(
         <div className={styles.mainComponent}>

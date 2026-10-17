@@ -7,7 +7,8 @@
   min-width: 15rem;
   max-width: 15rem;
   flex: 0 0 15rem;
-  height: 100vh;
+  height: auto;
+  align-self: stretch;
   padding: 24px 30px;
   background: #131b30;
   box-sizing: border-box;

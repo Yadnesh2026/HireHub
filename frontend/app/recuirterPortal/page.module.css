@@ -1,6 +1,10 @@
 
 .mainComponent{
     display: flex;
+    align-items: stretch;
+}
+.mainComponent > div:first-child{
+    display: flex;
 }
 .rightSide{
     margin: 25px auto;
