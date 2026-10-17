@@ -1,6 +1,18 @@
+"use client"
+import { useState } from "react"
 import styles from "./page.module.css"
 
 export default function postJob(){
+    const [formData, setFormData] = useState({
+        title:"",
+        company:"",
+        locaton:"",
+        salary:"",
+        jobtype:"",
+        description:"",
+        skills:""
+    })
+
     return(
         <div className={styles.mainComponent}>
 
@@ -49,8 +61,8 @@ export default function postJob(){
                     </div>
 
                     <div className={styles.skills}>
-                        <label htmlFor="Skills">Required Skills</label>
-                        <input placeholder="e.g 600000" name="Skills" id="Skills"/>
+                        <label htmlFor="skills">Required Skills</label>
+                        <input placeholder="e.g 600000" name="skills" id="skills"/>
                     </div>
 
                     <div className={styles.description}>
