@@ -55,8 +55,11 @@ export default function postJob(){
             console.log(err)
             alert(err instanceof Error ? err.message:"Something went wrong")
         }
-
     }
+
+
+
+    
 
    
 
