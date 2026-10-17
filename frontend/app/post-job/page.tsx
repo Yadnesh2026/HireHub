@@ -17,9 +17,7 @@ export default function postJob(){
         e.preventDefault()
 
         try{
-            useEffect(()=>{
-
-                  const token = localStorage.getItem("token");
+                const token = localStorage.getItem("token");
 
                 if (!token) {
                     throw new Error("Please log in first");
@@ -32,7 +30,14 @@ export default function postJob(){
                         "Content-type":"application/json",
                         Authorization: `Bearer ${token}`,
                     },
-                    body: JSON.stringify(formData)
+                    body: JSON.stringify({
+                        ...formData,
+                        salary: Number(formData.salary),
+                        skills: formData.skills
+                            .split(",")
+                            .map((skill) => skill.trim())
+                            .filter(Boolean),
+                    })
                 })
 
                 const data = await response.json()
@@ -40,10 +45,11 @@ export default function postJob(){
                 if(!response.ok){
                 throw new Error(data.message || "Something went wrong")
             }
+
+            alert(data.message || "Job Created");
         }
 
         fetchData()
-    })
 
         }catch(err){
             console.log(err)
@@ -90,7 +96,7 @@ export default function postJob(){
                         <div className={styles.salary}>
                             <label htmlFor="salary">Salary</label>
                             <input placeholder="e.g 600000" name="salary" id="salary"
-                             value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })}/>
+                             value={formData.salary} onChange={(e) => setFormData({ ...formData, salary: e.target.value })}/>
                         </div>
                     </div>
 
@@ -124,7 +130,7 @@ export default function postJob(){
                     </div>
 
 
-                    <button className={styles.publishBtn}>Publish Job</button>
+                    <button className={styles.publishBtn} type="submit">Publish Job</button>
 
 
                     
