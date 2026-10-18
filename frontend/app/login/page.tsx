@@ -40,8 +40,24 @@ export default function Login(){
 
         //tempralry stores the token  //ata.token is the token returned by your backend.
         //localStorage stores data in the browser. "token" is the key used to retrieve your JWT later.
-        localStorage.setItem("token",data.token) 
-        router.push("/jobs");
+        // localStorage.setItem("token",data.token) 
+        // router.push("/jobs");
+
+        //Recuriter can got o recuirterrs page and candidate can go to candidates page only
+        const payload = JSON.parse(
+                    atob(
+                        data.token
+                        .split(".")[1]  //Splits Header[0] Payload[1] signture[2]  
+                        .replace(/-/g, "+")
+                        .replace(/_/g, "/")
+                    )
+                    );
+
+        if(payload.role == "recruiter"){
+             router.push("/recruiterPortal");
+        } else {
+        router.push("/applied-jobs");
+        }
 
 
     }
