@@ -15,9 +15,28 @@ function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
 
+  const [userRole, setUserRole] = useState("");
+
   useEffect(()=>{
     setIsLoggedIn(!!localStorage.getItem("token"))  //What does !! mean here? Token exists → true, - Token doesn't exist → false
-  })
+  },[])
+
+  useEffect(() => {
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    const payload = JSON.parse(
+      atob(
+        token
+          .split(".")[1]
+          .replace(/-/g, "+")
+          .replace(/_/g, "/")
+      )
+    );
+
+    setUserRole(payload.role);
+  }
+}, []);
 
   return (
 
@@ -40,7 +59,9 @@ function Navbar() {
         <div className={styles.authBtns}>
           {isLoggedIn ? (
           <>
-              <Link href="/applied-jobs">Dashboard</Link>
+              <Link href={
+                userRole === "recruiter"?"/recruiterPortal": "/applied-jobs" //If recuiter than dahsboard will be recuirter
+              }>Dashboard</Link>
               <div className={styles.profileMenu}>
                 <button
                   type="button"
@@ -51,6 +72,8 @@ function Navbar() {
                 >
                   <UserRound size={22} />
                 </button>
+
+
 
                 {isProfileOpen && (
                   <div className={styles.profileDropdown}>
