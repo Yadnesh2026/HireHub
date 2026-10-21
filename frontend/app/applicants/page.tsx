@@ -28,6 +28,8 @@ export default function Applicants(){
       } else {
         console.log(data.message || "Failed to fetch applicants");
       }
+
+      
     } catch (err) {
       console.log("Error Fetching Applicants", err);
     }
