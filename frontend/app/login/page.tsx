@@ -54,6 +54,7 @@ export default function Login(){
                         .replace(/_/g, "/")
                     )
                     );
+                    
 
         if(payload.role == "recruiter"){
              router.push("/recruiterPortal");
@@ -61,7 +62,6 @@ export default function Login(){
         router.push("/applied-jobs");
         }
     }
-
 
     
     return(
