@@ -50,8 +50,8 @@ export default function Login(){
                     atob(  //Used to decode it and gives {"userId":"123","role":"recruiter"}
                         data.token
                         .split(".")[1]  //Splits Header[0] Payload[1] signture[2]  
-                        .replace(/-/g, "+")
-                        .replace(/_/g, "/")
+                        .replace(/-/g, "+")  //.replace(/-/g, "+") converts Base64URL's - character into Base64's +.
+                        .replace(/_/g, "/")  //.replace(/_/g, "/") converts Base64URL's _ character into Base64's /.
                     )
                     );
                     

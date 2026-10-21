@@ -109,3 +109,63 @@
     border-color: #8B7CFF;
     box-shadow: 0 0 0 2px rgba(139, 124, 255, 0.15);
 }
+
+.role{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.role label{
+    color: #f5f7ff;
+    font-size: 16px;
+}
+
+.role select{
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #29324A;
+    background-image: linear-gradient(45deg, transparent 50%, #b8b2ff 50%),
+        linear-gradient(135deg, #b8b2ff 50%, transparent 50%);
+    background-position: calc(100% - 18px) 50%, calc(100% - 12px) 50%;
+    background-repeat: no-repeat;
+    background-size: 6px 6px, 6px 6px;
+    border: 1px solid #35405A;
+    border-radius: 10px;
+    color: #f5f7ff;
+    cursor: pointer;
+    font-size: 16px;
+    min-height: 42px;
+    outline: none;
+    padding: 10px 40px 10px 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.role select:hover{
+    background-color: #303b56;
+    border-color: #596686;
+}
+
+.role select:focus{
+    border-color: #8B7CFF;
+    box-shadow: 0 0 0 2px rgba(139, 124, 255, 0.15);
+}
+
+.role option{
+    background: #1d2640;
+    color: #f5f7ff;
+}
+
+@media (max-width: 680px){
+    .mainComponent{
+        margin: 24px 16px;
+        width: auto;
+    }
+
+    .role select{
+        font-size: 15px;
+    }
+}
