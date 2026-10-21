@@ -3,6 +3,7 @@
 import { useState } from "react"
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function Login(){
 
@@ -42,6 +43,7 @@ export default function Login(){
         //localStorage stores data in the browser. "token" is the key used to retrieve your JWT later.
 
         localStorage.setItem("token", data.token)
+        window.dispatchEvent(new Event("auth-change"))
         // router.push("/jobs");
 
 
@@ -86,6 +88,13 @@ export default function Login(){
 
                     <button type="submit" className={styles.submit}>Login</button>
                 </form>
+
+                <div className={styles.signupPrompt}>
+                    <span>Don&apos;t have an account?</span>
+                    <Link href="/register" className={styles.signupLink}>
+                        Create an account
+                    </Link>
+                </div>
 
             </div>
         </div>

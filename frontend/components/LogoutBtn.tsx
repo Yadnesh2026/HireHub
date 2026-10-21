@@ -13,6 +13,7 @@ export default function LogoutBtn({ className = "" }: LogoutBtnProps){
 
     const handleSubmit =()=>{
         localStorage.removeItem("token")
+        window.dispatchEvent(new Event("auth-change"))
         router.push("/login")
     }
 

@@ -111,7 +111,7 @@ export default function RecuirterPortal(){
                     <p>No Jobs Posted yet.</p>
                 ):(
                     jobs.slice(0,5).map((job)=>(
-                        <div className={styles.jobPost}>
+                        <div className={styles.jobPost} key={job._id}>
                         <h2>{job.title}</h2>
                         <p>{job.company}</p>
 

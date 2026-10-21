@@ -17,26 +17,37 @@ function Navbar() {
 
   const [userRole, setUserRole] = useState("");
 
-  useEffect(()=>{
-    setIsLoggedIn(!!localStorage.getItem("token"))  //What does !! mean here? Token exists → true, - Token doesn't exist → false
-  },[])
-
   useEffect(() => {
-  const token = localStorage.getItem("token");
+    const updateAuthState = () => {
+      const token = localStorage.getItem("token");
 
-  if (token) {
-    const payload = JSON.parse(
-      atob(
-        token
-          .split(".")[1]
-          .replace(/-/g, "+")
-          .replace(/_/g, "/")
-      )
-    );
+      if (!token) {
+        setIsLoggedIn(false);
+        setUserRole("");
+        return;
+      }
 
-    setUserRole(payload.role);
-  }
-}, []);
+      setIsLoggedIn(true);
+      const payload = JSON.parse(
+        atob(
+          token
+            .split(".")[1]
+            .replace(/-/g, "+")
+            .replace(/_/g, "/")
+        )
+      );
+      setUserRole(payload.role);
+    };
+
+    updateAuthState();
+    window.addEventListener("auth-change", updateAuthState);
+    window.addEventListener("storage", updateAuthState);
+
+    return () => {
+      window.removeEventListener("auth-change", updateAuthState);
+      window.removeEventListener("storage", updateAuthState);
+    };
+  }, []);
 
   return (
 
@@ -54,14 +65,20 @@ function Navbar() {
       </div>
 
       <div className={styles.rightSide}>
-        <Link href="/jobs">Find Jobs</Link>
+        {!isLoggedIn || userRole === "candidate" ? (
+          <Link href="/jobs">Find Jobs</Link>
+        ) : (
+          <Link href="/post-job">Post a Job</Link>
+        )}
 
         <div className={styles.authBtns}>
           {isLoggedIn ? (
           <>
               <Link href={
-                userRole === "recruiter"?"/recruiterPortal": "/applied-jobs" //If recuiter than dahsboard will be recuirter
-              }>Dashboard</Link>
+                userRole === "recruiter" ? "/recruiterPortal" : "/applied-jobs"
+              }>
+                {userRole === "recruiter" ? "Recruiter Dashboard" : "My Applications"}
+              </Link>
               <div className={styles.profileMenu}>
                 <button
                   type="button"
