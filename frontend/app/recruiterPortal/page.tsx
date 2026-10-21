@@ -1,6 +1,5 @@
 "use client"
 
-import LeftSidebar from "@/components/LeftSidebar"
 import styles from "./page.module.css"
 import {
   BriefcaseBusiness,
@@ -60,8 +59,6 @@ export default function RecuirterPortal(){
 
     return(
         <div className={styles.mainComponent}>
-
-            <div><LeftSidebar/></div>
 
             <div className={styles.rightSide}>
                 <h1>Recruiter Dashboard</h1>

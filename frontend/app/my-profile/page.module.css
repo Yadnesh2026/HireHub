@@ -1,5 +1,5 @@
 .mainComponent{
-    display: flex;
+    min-height: calc(100vh - 80px);
 }
 /* MyProfile */
 .Myprofile{

@@ -4,7 +4,6 @@ import styles from "./page.module.css"
 import { FileCheck, Clock3, UserCheck, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import LeftSidebar from "@/components/LeftSidebar";
 
 export default function AppliedJobs(){
     const router = useRouter()
@@ -54,10 +53,6 @@ export default function AppliedJobs(){
 
     return(
         <div className={styles.mainComponent}>
-
-            <LeftSidebar activeItem="dashboard" />
-
-
 
             <div className={styles.rightSide}>
                 <h1>Track your Applications</h1>

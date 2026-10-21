@@ -3,7 +3,6 @@
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import LeftSidebar from "@/components/LeftSidebar";
 
 export default function MyProfile(){
     const router = useRouter()
@@ -108,10 +107,6 @@ export default function MyProfile(){
 
     return(
         <div className={styles.mainComponent}>
-
-            <LeftSidebar activeItem="profile" />
-
-
 
             <div className={styles.Myprofile}>
                 <h1>My Profile</h1>

@@ -41,7 +41,7 @@ export default function Login(){
         //tempralry stores the token  //ata.token is the token returned by your backend.
         //localStorage stores data in the browser. "token" is the key used to retrieve your JWT later.
 
-        // localStorage.setItem("token",data.token) 
+        localStorage.setItem("token", data.token)
         // router.push("/jobs");
 
 

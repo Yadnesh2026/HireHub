@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import styles from "./page.module.css"
+import { useRouter } from "next/navigation"
 
 export default function Register(){
 
@@ -15,6 +16,7 @@ export default function Register(){
     })
     const [message, setMessage] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const router  =useRouter()
 
     //handle the after submit btn
     const handleSubmit = async(e)=>{
@@ -73,6 +75,9 @@ export default function Register(){
             }
 
             setMessage("Account created successfully")
+
+            router.push("/login")
+            
         } catch (error) {
             console.error("Registration request failed:", error)
             setMessage(error.name === "AbortError"
