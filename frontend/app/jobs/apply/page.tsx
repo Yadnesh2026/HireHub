@@ -61,7 +61,7 @@ export default function ApplyJob(){
         //applicationData.append("jobId",jobId)  //"jobId" identifies the job the candidate selected.
 
         //send te all Apply job response to backend
-        const response = await fetch( `${process.env.NEXT_URL}/application/${jobId}`,{
+        const response = await fetch( `${process.env.NEXT_PUBLIC_API_URL}/application/${jobId}`,{
             method:"POST",
             headers:{
                 Authorization: `Bearer ${token}`

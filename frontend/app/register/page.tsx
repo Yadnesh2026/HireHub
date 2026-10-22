@@ -51,7 +51,7 @@ export default function Register(){
             const timeout = setTimeout(() => controller.abort(), 10000)
 
 
-            const response = await fetch(`${process.env.NEXT_URL}/user`,{
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"

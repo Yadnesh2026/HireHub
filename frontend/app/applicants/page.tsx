@@ -24,7 +24,7 @@ export default function Applicants(){
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    `${process.env.NEXT_URL}/application/${id}/status`,
+    `${process.env.NEXT_PUBLIC_API_URL}/application/${id}/status`,
     {
       method: "PATCH",
       headers: {
@@ -57,7 +57,7 @@ export default function Applicants(){
                     return;
                 }
 
-                const response = await fetch(`${process.env.NEXT_URL}/applicants`, {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/applicants`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`

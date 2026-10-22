@@ -20,7 +20,7 @@ export default function AppliedJobs(){
                     return;
                 }
 
-                const response = await fetch(`${process.env.NEXT_URL}/application`,{
+                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/application`,{
                     method:"GET",
                     headers:{
                         Authorization:`Bearer ${token}`
