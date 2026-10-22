@@ -25,11 +25,12 @@ export default function Applicants(){
 
       if (response.ok) {
         setApplicants(data.applicants);
+        
       } else {
         console.log(data.message || "Failed to fetch applicants");
       }
 
-      
+
     } catch (err) {
       console.log("Error Fetching Applicants", err);
     }
