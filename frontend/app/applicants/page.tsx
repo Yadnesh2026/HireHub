@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import styles from  "./page.module.css"
+import { API_URL } from "@/lib/api";
 
 type Applicant = {
     _id: string;
@@ -24,7 +25,7 @@ export default function Applicants(){
   const token = localStorage.getItem("token");
 
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/application/${id}/status`,
+    `${API_URL}/application/${id}/status`,
     {
       method: "PATCH",
       headers: {
@@ -57,7 +58,7 @@ export default function Applicants(){
                     return;
                 }
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/applicants`, {
+                const response = await fetch(`${API_URL}/applicants`, {
                     method: "GET",
                     headers: {
                         Authorization: `Bearer ${token}`

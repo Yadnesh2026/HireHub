@@ -3,6 +3,7 @@
 import { useState } from "react";
 import styles from "./page.module.css"
 import { useRouter,useSearchParams  } from "next/navigation";
+import { API_URL } from "@/lib/api";
 
 export default function ApplyJob(){
      const [resume, setResume] = useState<File | null>(null);
@@ -61,7 +62,7 @@ export default function ApplyJob(){
         //applicationData.append("jobId",jobId)  //"jobId" identifies the job the candidate selected.
 
         //send te all Apply job response to backend
-        const response = await fetch( `${process.env.NEXT_PUBLIC_API_URL}/application/${jobId}`,{
+        const response = await fetch( `${API_URL}/application/${jobId}`,{
             method:"POST",
             headers:{
                 Authorization: `Bearer ${token}`

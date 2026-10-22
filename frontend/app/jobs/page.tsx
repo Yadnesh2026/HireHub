@@ -5,6 +5,7 @@ import { Search, MapPin } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
+import { API_URL } from "@/lib/api";
 
 type Job ={
   _id:string,
@@ -44,7 +45,7 @@ function JobsPage() {
       }
 
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/profile`, {
+        const response = await fetch(`${API_URL}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -93,7 +94,7 @@ function JobsPage() {
   useEffect(() => {
   const allJobs = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/job`);
+      const response = await fetch(`${API_URL}/job`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch jobs");

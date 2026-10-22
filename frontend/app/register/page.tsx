@@ -3,6 +3,7 @@
 import { useState } from "react"
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation"
+import { API_URL } from "@/lib/api"
 
 export default function Register(){
 
@@ -51,7 +52,7 @@ export default function Register(){
             const timeout = setTimeout(() => controller.abort(), 10000)
 
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`,{
+            const response = await fetch(`${API_URL}/user`,{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"

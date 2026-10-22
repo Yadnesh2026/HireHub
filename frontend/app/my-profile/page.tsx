@@ -2,6 +2,7 @@
 
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation";
+import { API_URL } from "@/lib/api";
 import { useEffect, useState } from "react";
 
 export default function MyProfile(){
@@ -24,7 +25,7 @@ export default function MyProfile(){
 
         const fetchData =async()=>{
             try{
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/profile`,{
+            const response = await fetch(`${API_URL}/profile`,{
             method:"GET",
             headers:{
                 Authorization:`Bearer ${token}`
@@ -72,7 +73,7 @@ export default function MyProfile(){
             throw new Error("Token not get")
         }
 
-        const fetchData = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/profile`,{
+        const fetchData = await fetch(`${API_URL}/profile`,{
             method:"PUT",
             headers:{
                 "Authorization":`Bearer ${token}`,

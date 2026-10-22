@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { API_URL } from "@/lib/api";
 
 
 export default function RecuirterPortal(){
@@ -28,7 +29,7 @@ export default function RecuirterPortal(){
                 router.push("/login")
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/myjobs`,{
+            const response = await fetch(`${API_URL}/myjobs`,{
                 method:"GET",
                 headers:{
                      Authorization:`Bearer ${token}`

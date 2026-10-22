@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation"
+import { API_URL } from "@/lib/api"
 
 export default function postJob(){
     const [formData, setFormData] = useState({
@@ -28,7 +29,7 @@ export default function postJob(){
                     throw new Error("Please log in first");
                 }
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/job`,{
+                const response = await fetch(`${API_URL}/job`,{
                     method:"POST",
                     headers:{
                         "Content-type":"application/json",

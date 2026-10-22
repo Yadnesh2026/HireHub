@@ -4,6 +4,7 @@ import styles from "./page.module.css"
 import { FileCheck, Clock3, UserCheck, CircleX } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { API_URL } from "@/lib/api";
 
 export default function AppliedJobs(){
     const router = useRouter()
@@ -20,7 +21,7 @@ export default function AppliedJobs(){
                     return;
                 }
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/application`,{
+                const response = await fetch(`${API_URL}/application`,{
                     method:"GET",
                     headers:{
                         Authorization:`Bearer ${token}`

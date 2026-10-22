@@ -4,6 +4,7 @@ import { useState } from "react"
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { API_URL } from "@/lib/api"
 
 export default function Login(){
 
@@ -17,7 +18,7 @@ export default function Login(){
         e.preventDefault()
 
     
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`,{
+        const response = await fetch(`${API_URL}/login`,{
             method:"POST",
             headers:{
                 "content-Type":"application/json"
