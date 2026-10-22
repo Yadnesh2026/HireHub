@@ -1,6 +1,7 @@
 ﻿"use client"
 
 import { useEffect, useState } from "react";
+import styles from  "./page.module.css"
 
 type Applicant = {
     _id: string;
@@ -87,29 +88,67 @@ export default function Applicants(){
 
     const applicantsList = Array.isArray(applicants) ? applicants : [];
 
-    return (
-        <div>
-            <h1>Applicants</h1>
+    
+       return (
+  <div className={styles.applicantsPage}>
+    <div className={styles.pageHeader}>
+      <h1>Applicants</h1>
+      <p>Review candidates and manage their applications.</p>
+    </div>
 
-            {applicantsList.length === 0 ? (
-                <p>No applicants found.</p>
-            ) : (
-                applicantsList.map((application) => (
-                    <div key={application._id}>
-                        <h2>{application.candidate?.name}</h2>
-                        <p>{application.job?.title}</p>
-                        <p>Status: {application.status}</p>
+    {applicantsList.length === 0 ? (
+      <div className={styles.emptyState}>
+        <h2>No applicants found</h2>
+        <p>Applications for your jobs will appear here.</p>
+      </div>
+    ) : (
+      <div className={styles.applicantsList}>
+        {applicantsList.map((application) => (
+          <div className={styles.applicantCard} key={application._id}>
+            <div className={styles.applicantInfo}>
+              <h2>{application.candidate?.name}</h2>
+              <p className={styles.jobTitle}>
+                {application.job?.title}
+              </p>
+            </div>
 
-                        <button onClick={() => updateStatus(application._id, "shortlisted")}>
-                        Shortlist
-                        </button>
+            <div className={styles.applicantActions}>
+              <span
+                className={`${styles.statusBadge} ${
+                  styles[application.status]
+                }`}
+              >
+                {application.status}
+              </span>
 
-                        <button onClick={() => updateStatus(application._id, "rejected")}>
-                        Reject
-                        </button>
-                    </div>
-                ))
-            )}
-        </div>
-    );
+              <button
+                className={styles.shortlistBtn}
+                onClick={() =>
+                  updateStatus(application._id, "shortlisted")
+                }
+                disabled={application.status === "shortlisted"}
+              >
+                Shortlist
+              </button>
+
+              <button
+                className={styles.rejectBtn}
+                onClick={() =>
+                  updateStatus(application._id, "rejected")
+                }
+                disabled={application.status === "rejected"}
+              >
+                Reject
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+
+
+
+);
 }

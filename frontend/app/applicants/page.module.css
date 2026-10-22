@@ -1,0 +1,171 @@
+
+.applicantsPage {
+  min-height: 75vh;
+  padding: 48px 7%;
+  color: #f8fafc;
+}
+
+.pageHeader {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 32px;
+}
+
+.pageHeader h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.pageHeader p {
+  margin: 0;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+.applicantsList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.applicantCard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  background: #131d38;
+  border: 1px solid #293653;
+  border-radius: 16px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.applicantCard:hover {
+  border-color: #8b5cf6;
+  transform: translateY(-2px);
+}
+
+.applicantInfo h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.jobTitle {
+  margin: 0;
+  color: #a5b4fc;
+  font-size: 14px;
+}
+
+.applicantActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  margin-right: 4px;
+  padding: 7px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.pending {
+  color: #fbbf24;
+  background: #422f0c;
+}
+
+.shortlisted {
+  color: #34d399;
+  background: #103b30;
+}
+
+.rejected {
+  color: #f87171;
+  background: #451c27;
+}
+
+.shortlistBtn,
+.rejectBtn {
+  min-width: 78px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.shortlistBtn {
+  color: white;
+  background: #7c3aed;
+}
+
+.shortlistBtn:hover:not(:disabled) {
+  background: #6d28d9;
+}
+
+.rejectBtn {
+  color: #fecaca;
+  background: #45202a;
+  border: 1px solid #71313d;
+}
+
+.rejectBtn:hover:not(:disabled) {
+  background: #632735;
+}
+
+.shortlistBtn:disabled,
+.rejectBtn:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.emptyState {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  text-align: center;
+  background: #131d38;
+  border: 1px solid #293653;
+  border-radius: 16px;
+}
+
+.emptyState h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.emptyState p {
+  margin: 0;
+  color: #9ca3af;
+}
+
+@media (max-width: 700px) {
+  .applicantsPage {
+    padding: 32px 5%;
+  }
+
+  .pageHeader h1 {
+    font-size: 26px;
+  }
+
+  .applicantCard {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .applicantActions {
+    justify-content: flex-start;
+  }
+}
