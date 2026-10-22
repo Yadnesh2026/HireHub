@@ -30,7 +30,7 @@ export default function JobDetails(){
     useEffect(()=>{
         const fetchData = async()=>{
             try{
-            const response = await fetch(`http://localhost:1000/api/job/${id}`)
+            const response = await fetch(`${process.env.NEXT_URL}/job/${id}`)
 
             if(!response.ok){
                 throw new Error("Failed to fetch job details");

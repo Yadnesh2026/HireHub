@@ -44,7 +44,7 @@ function JobsPage() {
       }
 
       try {
-        const response = await fetch("http://localhost:1000/api/profile", {
+        const response = await fetch(`${process.env.NEXT_URL}/profile`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -93,7 +93,7 @@ function JobsPage() {
   useEffect(() => {
   const allJobs = async () => {
     try {
-      const response = await fetch("http://localhost:1000/api/job");
+      const response = await fetch(`${process.env.NEXT_URL}/job`);
 
       if (!response.ok) {
         throw new Error("Failed to fetch jobs");

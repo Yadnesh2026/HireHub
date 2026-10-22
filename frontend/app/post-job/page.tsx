@@ -28,7 +28,7 @@ export default function postJob(){
                     throw new Error("Please log in first");
                 }
 
-                const response = await fetch("http://localhost:1000/api/job",{
+                const response = await fetch(`${process.env.NEXT_URL}/job`,{
                     method:"POST",
                     headers:{
                         "Content-type":"application/json",

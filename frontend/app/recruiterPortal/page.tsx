@@ -28,7 +28,7 @@ export default function RecuirterPortal(){
                 router.push("/login")
             }
 
-            const response = await fetch("http://localhost:1000/api/myjobs",{
+            const response = await fetch(`${process.env.NEXT_URL}/myjobs`,{
                 method:"GET",
                 headers:{
                      Authorization:`Bearer ${token}`

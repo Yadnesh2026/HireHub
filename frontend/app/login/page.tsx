@@ -17,7 +17,7 @@ export default function Login(){
         e.preventDefault()
 
     
-        const response = await fetch("http://localhost:1000/api/login",{
+        const response = await fetch(`${process.env.NEXT_URL}/login`,{
             method:"POST",
             headers:{
                 "content-Type":"application/json"
