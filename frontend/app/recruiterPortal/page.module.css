@@ -55,6 +55,44 @@
     font-size: 30px;
 } 
 
+.viewApplicants{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    margin: 8px 0 30px;
+    padding: 14px 20px;
+    color: #e9e7ff;
+    background: #242d54;
+    border: 1px solid #55538d;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.viewApplicants:hover{
+    background: #303966;
+    border-color: #a78bfa;
+    transform: translateY(-1px);
+}
+
+.applicantCount{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 24px;
+    padding: 0 7px;
+    color: #ffffff;
+    background: #7c3aed;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
 .downSide{
     background: #0f1e42;
     padding: 20px;

@@ -101,7 +101,18 @@ export default function RecuirterPortal(){
 
                 </div>
 
-                
+                <button
+                    type="button"
+                    className={styles.viewApplicants}
+                    onClick={() => router.push("/applicants")}
+                >
+                    <UsersRound size={20} />
+                    <span>View Applicants</span>
+                    <span className={styles.applicantCount}>
+                        {totalApplicants}
+                    </span>
+                </button>
+
                
 
                 <div className={styles.downSide}>
