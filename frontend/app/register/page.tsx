@@ -19,7 +19,7 @@ export default function Register(){
     const router  =useRouter()
 
     //handle the after submit btn
-    const handleSubmit = async(e)=>{
+    const handleSubmit = async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
 
         if(formData.name.trim().length < 3){
@@ -80,7 +80,7 @@ export default function Register(){
             
         } catch (error) {
             console.error("Registration request failed:", error)
-            setMessage(error.name === "AbortError"
+            setMessage(error instanceof Error && error.name === "AbortError"
                 ? "The server took too long to respond. Check that MongoDB and the backend are running."
                 : "Unable to connect to the server. Make sure the backend is running on port 1000.")
         } finally {

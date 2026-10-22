@@ -115,7 +115,7 @@ export default function Applicants(){
             <div className={styles.applicantActions}>
               <span
                 className={`${styles.statusBadge} ${
-                  styles[application.status]
+                  styles[application.status || "pending"]
                 }`}
               >
                 {application.status}

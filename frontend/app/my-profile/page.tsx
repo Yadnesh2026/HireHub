@@ -57,7 +57,7 @@ export default function MyProfile(){
 
 
     //Update After form su
-    const handleSubmit =async(e)=>{
+    const handleSubmit =async(e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
 
         setSaving(true)
