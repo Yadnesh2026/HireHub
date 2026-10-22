@@ -10,23 +10,16 @@ require("dotenv").config()
 
 const allowedOrigins = [
     "http://localhost:3000",
-    process.env.FRONTEND_URL,
-].filter(Boolean)
+    "https://hire-hub-beryl-omega.vercel.app",
+]
 
 app.use(cors({
-    origin: (origin, callback) => {
-        if (
-            !origin ||
-            allowedOrigins.includes(origin) ||
-            /^https:\/\/[a-z0-9-]+\.vercel\.app$/i.test(origin)
-        ) {
-            callback(null, true)
-            return
-        }
-
-        callback(new Error("Origin is not allowed by CORS"))
-    },
+    origin: allowedOrigins,
 }))
+
+
+
+
 app.use(express.json())
 app.use("/api",userRoute)
 app.use("/api",JobRoute)
