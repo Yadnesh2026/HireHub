@@ -32,7 +32,7 @@ export default function Footer() {
 
           <div className={styles.linkGroup}>
             <h3>For Employers</h3>
-            <Link href="/recruiter/jobs">Post a Job</Link>
+            <Link href="/post-job">Post a Job</Link>
             <Link href="/register">Find Candidates</Link>
           </div>
 
