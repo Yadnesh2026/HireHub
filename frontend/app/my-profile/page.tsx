@@ -127,19 +127,19 @@ export default function MyProfile(){
                             <div className={styles.name}>
                                 <label htmlFor="name">Full Name</label>
                                 <input name="name" id="name" placeholder="Your Full name" 
-                                value={user.name} onChange={(e)=>setUser({...user,name:e.target.value})}/>
+                                value={user.name} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setUser({...user,name:e.target.value})}/>
                             </div>
 
                             <div className={styles.email}>
                                 <label>Email</label>
                                 <input name="email" id="email" placeholder="you@Example.com"
-                                value={user.email} onChange={(e)=>setUser({...user,email:e.target.value})}/>
+                                value={user.email} onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setUser({...user,email:e.target.value})}/>
                             </div>
 
                             {/* <div className={styles.role}>
                                 <label>Account Role</label>
                                  <select name="role"id="role" 
-                                 onChange={(e)=>setUser({...user, role:e.target.value})}>
+                                 onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>setUser({...user, role:e.target.value})}>
                                     <option value="candidate">Candidate</option>
                                     <option value="recruiter">Recruiter</option>
                                 </select>

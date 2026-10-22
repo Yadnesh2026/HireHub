@@ -103,26 +103,26 @@ export default function Register(){
                     <div className={styles.name}>
                         <label htmlFor="name">Full Name</label>
                         <input placeholder="Enter your full name" name="name" id="name" minLength={3} required value={formData.name}
-                        onChange={(e)=>setFormData({...formData, name:e.target.value})}/>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setFormData({...formData, name:e.target.value})}/>
                     </div>
 
                      <div className={styles.email}>
                         <label htmlFor="email">Emaill Address</label>
                         <input placeholder="you@example.com" type="email" name="email" id="email" required value={formData.email}
-                        onChange={(e)=>setFormData({...formData, email:e.target.value})}/>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setFormData({...formData, email:e.target.value})}/>
                     </div>
 
                     <div className={styles.password}>
                         <label htmlFor="password">Password</label>
                         <input placeholder="Create a password" type="password" name="password" id="password" minLength={8} required value={formData.password}
-                        onChange={(e)=>setFormData({...formData, password:e.target.value})}/>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setFormData({...formData, password:e.target.value})}/>
                     </div>
 
                     <div className={styles.confrimPassword}>
 
                         <label htmlFor="confirmPassword">Password</label>
                         <input placeholder="Re-enter your password" type="password" name="confirmPassword" id="confirmPassword" minLength={8} required value={formData.confirmPassword}
-                        onChange={(e)=> setFormData({...formData, confirmPassword:e.target.value})}/>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>)=> setFormData({...formData, confirmPassword:e.target.value})}/>
 
                     </div>
 
@@ -133,7 +133,7 @@ export default function Register(){
                             name="role"
                             id="role"
                             value={formData.role}
-                            onChange={(e)=>setFormData({...formData, role:e.target.value})}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>)=>setFormData({...formData, role:e.target.value})}
                         >
                             <option value="candidate">Candidate</option>
                             <option value="recruiter">Recruiter</option>

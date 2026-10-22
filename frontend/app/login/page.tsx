@@ -77,13 +77,13 @@ export default function Login(){
                     <div className={styles.email}>
                         <label htmlFor="email">Email Address</label>
                         <input placeholder="you@example.com" id="email" name="email" value={formData.email} 
-                        onChange={(e)=>setFormData({...formData, email:e.target.value})}/>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setFormData({...formData, email:e.target.value})}/>
                     </div>
 
                     <div className={styles.password}>
                         <label htmlFor="password">Password</label>
                         <input placeholder="Enter your password" type="password" id="password" name="password" value={formData.password}
-                        onChange={(e)=>setFormData({...formData, password:e.target.value})}/>
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>)=>setFormData({...formData, password:e.target.value})}/>
                     </div>
 
                     <button type="submit" className={styles.submit}>Login</button>

@@ -81,13 +81,13 @@ export default function postJob(){
                         <div className={styles.title}>
                             <label htmlFor="title">Job Title</label>
                             <input placeholder="e.g Backend Developer" name="title" id="title"
-                            value={formData.title} onChange={(e) => setFormData({ ...formData, title: e.target.value })}/>
+                            value={formData.title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, title: e.target.value })}/>
                         </div>
 
                         <div className={styles.company}>
                             <label htmlFor="company">Company</label>
                             <input placeholder="Company name" name="company" id="company"
-                             value={formData.company} onChange={(e) => setFormData({ ...formData, company: e.target.value })}/>
+                             value={formData.company} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, company: e.target.value })}/>
                         </div>
                     </div>
 
@@ -95,7 +95,7 @@ export default function postJob(){
                         <div className={styles.location}>
                             <label htmlFor="location">Location</label>
                             <input placeholder="e.g Pune/Remote" name="location" id="location"
-                             value={formData.location} onChange={(e) => setFormData({ ...formData, location: e.target.value })}/>
+                             value={formData.location} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, location: e.target.value })}/>
                         </div>
 
                         <div className={styles.salary}>
@@ -103,7 +103,7 @@ export default function postJob(){
                             <div className={styles.salaryInput}>
                                 <span>₹</span>
                                 <input type="number" min="0" placeholder="e.g 600000" name="salary" id="salary"
-                             value={formData.salary} onChange={(e) => setFormData({ ...formData, salary: e.target.value })}/>
+                             value={formData.salary} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, salary: e.target.value })}/>
                             </div>
                         </div>
                     </div>
@@ -111,7 +111,7 @@ export default function postJob(){
                     <div className={styles.jobType}>
                         <label htmlFor="jobType">Job Type</label>
                         <select name="jobType" id="jobType" 
-                        value={formData.jobType} onChange={(e) => setFormData({ ...formData, jobType: e.target.value })}>
+                        value={formData.jobType} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({ ...formData, jobType: e.target.value })}>
                             <option value="" disabled>Select job type</option>
                             <option value="full-time">Full-time</option>
                             <option value="part-time">Part-time</option>
@@ -123,7 +123,7 @@ export default function postJob(){
                     <div className={styles.skills}>
                         <label htmlFor="skills">Required Skills</label>
                         <input placeholder="e.g MERN Stack, Devops" name="skills" id="skills"
-                        value={formData.skills} onChange={(e) => setFormData({ ...formData, skills: e.target.value })}/>
+                        value={formData.skills} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, skills: e.target.value })}/>
                     </div>
 
                     <div className={styles.description}>
@@ -133,7 +133,7 @@ export default function postJob(){
                             id="description"
                             placeholder="Describe the role, responsibilities, and expectations..."
                             rows={5}
-                            value={formData.description} onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                            value={formData.description} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData({ ...formData, description: e.target.value })}
                         />
                     </div>
 
@@ -145,7 +145,7 @@ export default function postJob(){
                             placeholder={"Add one responsibility per line...\nExample: Build and maintain REST APIs\nExample: Collaborate with frontend developers"}
                             rows={5}
                             value={formData.responsibilities}
-                            onChange={(e) => setFormData({ ...formData, responsibilities: e.target.value })}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData({ ...formData, responsibilities: e.target.value })}
                         />
                     </div>
 
@@ -157,7 +157,7 @@ export default function postJob(){
                             placeholder={"Add one requirement per line...\nExample: 2+ years of Node.js experience\nExample: Strong problem-solving skills"}
                             rows={5}
                             value={formData.requirements}
-                            onChange={(e) => setFormData({ ...formData, requirements: e.target.value })}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData({ ...formData, requirements: e.target.value })}
                         />
                     </div>
 

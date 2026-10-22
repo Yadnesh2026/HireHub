@@ -11,14 +11,16 @@ type Applicant = {
     job?: {
         title?: string;
     };
-    status?: string;
+    status?: "pending" | "shortlisted" | "rejected";
 };
+
+type ApplicationStatus = NonNullable<Applicant["status"]>;
 
 export default function Applicants(){
     const [applicants, setApplicants] = useState<Applicant[]>([]);
 
     //Updating the status
- const updateStatus = async (id: string, status: string) => {
+ const updateStatus = async (id: string, status: ApplicationStatus) => {
   const token = localStorage.getItem("token");
 
   const response = await fetch(
@@ -115,7 +117,11 @@ export default function Applicants(){
             <div className={styles.applicantActions}>
               <span
                 className={`${styles.statusBadge} ${
-                  styles[application.status || "pending"]
+                  application.status === "shortlisted"
+                    ? styles.shortlisted
+                    : application.status === "rejected"
+                      ? styles.rejected
+                      : styles.pending
                 }`}
               >
                 {application.status}
