@@ -1,5 +1,5 @@
 
-name: HireNova CI
+name: HireNova CI pipeline
 
 on:
   push:
@@ -57,3 +57,51 @@ jobs:
 
       - name: Check backend syntax
         run: node --check server.js
+
+
+# Frontend Implementation - All CI Steps 
+
+# To test that package.json is present in the file or not - Local Node.js aur npm versions check karta hai.
+# Test-Path .\frontend\package-lock.json
+# Test-Path .\backend\package-lock.json
+
+# Check karta hai ki dono lockfiles exist karti hain ya nahi.
+# git ls-files frontend/package-lock.json backend/package-lock.json
+
+#ESLint se code-quality check karta hai. Tumhare project mein abhi 6 errors aur 3 warnings aaye the. Consist of errors
+#npm run lint
+
+# Next.js ka production build verify karta hai. Tumhara build successfully pass hua tha.
+# npm run build
+
+
+
+# Backend Implementation - All CI Steps 
+
+# npm ci - Lockfile se dependencies install karna
+# package-lock.json ke according dependencies install karta hai. Ye command GitHub Actions workflow mein use hui thi.
+
+
+
+
+# 4. GitHub Actions workflow create karna
+
+
+# Get-ChildItem .github/workflows
+# Workflow folder ke andar files list karta hai.
+
+# Get-Content .github/workflows/ci.yml
+# CI workflow ka saved content terminal mein dikhata hai.
+
+
+
+
+# 5. Git mein workflow save karna
+# Location: Project root mein.
+
+
+# git status
+# Check karta hai ki workflow file untracked hai ya staged.
+
+# git add .github/workflows/ci.yml
+# Workflow ko next commit ke liye staging area mein add karta hai.
