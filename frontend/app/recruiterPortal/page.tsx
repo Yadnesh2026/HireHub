@@ -11,10 +11,15 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_URL } from "@/lib/api";
 
+type Job = {
+  _id: string;
+  title: string;
+  company: string;
+};
 
 export default function RecuirterPortal(){
     const router = useRouter()
-    const [jobs, setJobs] = useState<any[]>([])
+    const [jobs, setJobs] = useState<Job[]>([])
 
     const [totalApplicants, setTotalApplicants] = useState(0);
     const [shortlisted, setShortlisted] = useState(0);
@@ -42,7 +47,7 @@ export default function RecuirterPortal(){
                 throw new Error(data.message || "Soemthing went wrong")
             }
 
-            setJobs(data.job)
+            setJobs(Array.isArray(data.job) ? data.job : [])
             setTotalApplicants(data.totalApplicants);
             setShortlisted(data.shortlisted);
             setPendingReview(data.pendingReview);
@@ -56,7 +61,7 @@ export default function RecuirterPortal(){
 
         fetchJobs()
 
-    },[])
+    },[router])
 
     return(
         <div className={styles.mainComponent}>

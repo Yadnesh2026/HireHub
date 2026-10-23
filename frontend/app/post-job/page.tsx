@@ -1,10 +1,10 @@
 "use client"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styles from "./page.module.css"
 import { useRouter } from "next/navigation"
 import { API_URL } from "@/lib/api"
 
-export default function postJob(){
+export default function PostJob(){
     const [formData, setFormData] = useState({
         title:"",
         company:"",
