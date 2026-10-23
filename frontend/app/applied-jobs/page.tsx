@@ -6,9 +6,19 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { API_URL } from "@/lib/api";
 
+type Application = {
+    _id: string;
+    status: string;
+    job?: {
+        title?: string;
+        company?: string;
+        location?: string;
+    };
+};
+
 export default function AppliedJobs(){
     const router = useRouter()
-    const [applications, setApplications] = useState<any[]>([])
+    const [applications, setApplications] = useState<Application[]>([])
     const [isLoading, setIsLoading] = useState(true);
 
     //Fetch And send the data to backend 
@@ -34,7 +44,7 @@ export default function AppliedJobs(){
                 if(!response.ok){
                     throw new Error(data.message || "Failed to fetch applications")
                 }
-                setApplications(data.applications)
+                setApplications(Array.isArray(data.applications) ? data.applications : [])
             }catch(err){
                 console.log("Erroe Fetching application",err)
             }finally{
@@ -57,7 +67,7 @@ export default function AppliedJobs(){
 
             <div className={styles.rightSide}>
                 <h1>Track your Applications</h1>
-                <p>Here's your job search overview.</p>
+                <p>Here&apos;s your job search overview.</p>
 
                 <div className={styles.MiddleBoxes}>
 
@@ -93,7 +103,7 @@ export default function AppliedJobs(){
                                         {isLoading ? (
                         <p>Loading applications...</p>
                     ) : applications.length === 0 ? (
-                        <p>You haven't applied for any jobs yet.</p>
+                        <p>You haven&apos;t applied for any jobs yet.</p>
                     ) : (
                         applications.map((app) => (
                             <div className={styles.application} key={app._id}>

@@ -54,7 +54,7 @@ export default function MyProfile(){
         }
 
         fetchData()
-    },[])
+    },[router])
 
 
     //Update After form su
