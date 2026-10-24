@@ -1,0 +1,70 @@
+#Docker Compose ek YAML file (compose.yaml) ke through multiple containers ko configure aur manage karne deta hai. from where we can run mongo + server togther measn multiple Runs togthers
+
+# Compose mein run hone wali services define karta hai.
+services:
+  backend: #Hamari service ka naam hai.
+    image: hirenova-backend #Pehle se banayi hui HireNova Docker image use karega.
+    container_name: hirenova-compose-test #Container ka naam set karta hai.
+    env_file:
+      - .env #Backend ke environment variables .env se load karega.
+    environment:
+      MONGODB_URL: mongodb://mongo:27017/hirenova
+    ports:
+      - "1001:1000" # Host port 1001 ko container port 1000 se connect karega.
+  
+
+  mongo:
+    image: mongo:7
+    container_name: hirenova-mongo-local
+    restart: unless-stopped #restarts it automatically unless you stop it.
+    volumes:
+      - mongo_data:/data/db # keeps database files outside the container's writable layer.
+
+volumes: # declares the named volume used for storage.
+  mongo_data:
+
+
+
+
+# | Code | Meaning |
+# | `mongo_data` | Docker Volume ka naam |
+# | `/data/db` | Container ke andar MongoDB ka data folder |
+# | `mongo_data:/data/db` | Volume ko MongoDB ke data folder se connect karo |
+
+
+
+
+
+
+
+
+
+# Command	What it does
+# docker compose up -d	- Starts services in the background.
+# docker compose ps - 	Shows the status of Compose services.
+# docker compose logs -f backend - 	Streams backend logs live; press Ctrl + C to stop streaming.
+# docker compose stop - 	Stops Compose services without removing them.
+# docker compose down - 	Stops and removes Compose-managed containers and networks.
+
+
+
+# Print the servicer we are going to use
+# docker compose config
+
+# 1 .This command creates and starts the service defined in compose.yaml.
+# docker compose up -d
+
+# 2. Tumhe backend aur mongo services dikhni chahiye. MongoDB ko pehli baar initialize hone mein thoda time lag sakta hai.
+# docker compose ps
+
+
+# 3. Check the logs from both the services
+# docker compose logs backend
+
+#4 . docker volume ls
+# Shows all the volumes
+
+
+
+# Build the Image
+# docker build -t hirenova-backend .

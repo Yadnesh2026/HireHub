@@ -1,0 +1,10 @@
+node_modules
+.env
+.env.*
+!.env.example
+.git
+npm-debug.log*
+Dockerfile
+.dockerignore
+
+# Files which we dont want to add in Docker Image
