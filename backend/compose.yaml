@@ -26,6 +26,8 @@ volumes: # declares the named volume used for storage.
 
 
 
+
+
 # | Code | Meaning |
 # | `mongo_data` | Docker Volume ka naam |
 # | `/data/db` | Container ke andar MongoDB ka data folder |
