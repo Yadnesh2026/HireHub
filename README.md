@@ -9,6 +9,8 @@ HireNova is a full-stack job portal platform that connects job seekers with recr
 - **GitHub Repository:** [HireNova Source Code](https://github.com/Yadnesh2026/HireHub)
 
 
+
+
 ## Features
 
 ### Candidate Features
