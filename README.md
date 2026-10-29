@@ -12,7 +12,7 @@ HireNova is a full-stack job portal platform that connects job seekers with recr
 
 ### Candidate Features
 
-- Register and log in securely.
+- Register and log-in, log-out securely.
 - Browse and search available job listings.
 - View job details, descriptions, skills, salary, and location.
 - Apply for jobs by uploading a resume.
